@@ -1,0 +1,14 @@
+include  template/vars
+include ../../../../core/mixins/mixins
+include data/data
+doctype html
+html(lang='ru')
+	-page_title = "Home";
+	include template/style
+	body.body
+		.set
+			include template/header
+			main.main
+				section
+					.section
+			include template/footer

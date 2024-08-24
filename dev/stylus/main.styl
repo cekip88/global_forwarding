@@ -1,0 +1,136 @@
+@import mixins
+@import vars
+@import groups
+@import reset
+@import front
+
+
+svg
+	display: block
+	max-width 100%
+.sprite-svg
+	display: none!important
+a
+	color RGB($dark_gray)
+
+.body
+	color RGB($dark_gray)
+	font 16px $f_reg
+	display: flex
+	flex-direction: column
+.section
+	padding 0 20px
+	+tablet()
+		w 768px
+		padding 0
+		margin 0 auto
+	+desktop()
+		w 1200px
+.btn
+	padding 13px 38px
+	background-color RGB($dark_blue)
+	color RGB($white)
+	
+.footer
+	&_inpt
+		w 210px
+		padding 10px 13px
+		border 1px solid RGB($shipping_blue)
+		border-radius 4px
+		background-color RGB($white)
+		font-size 12px
+		line-height 16px
+		color RGB($inpt_gray)
+	&-cols
+		padding 32px 0 60px
+		display flex
+		align-items flex-start
+		column-gap 27px
+	&-col
+		w 210px
+		display flex
+		flex-direction column
+		row-gap 12px
+		&_title
+			font 12px/17px $t_bold
+			color RGB($shipping_blue)
+			text-transform uppercase
+		&_link
+			font-size 14px
+			line-height 16px
+			color RGB($shipping_blue)
+	&-bottom
+		padding-bottom 24px
+		&,&_link
+			color RGB($shipping_blue)
+		&:before
+			wh calc(100% - 100px),1px
+			margin 0 auto 24px
+			display block
+			content ''
+			background-color #CACACA
+		&_row
+			display flex
+			align-items center
+			justify-content space-between
+		&_links
+			display flex
+			align-items center
+			column-gap 20px
+		&_link
+			font-size 14px
+			line-height 16px
+	&-copy
+		font-size 14px
+		line-height 27px
+
+.shipping
+	background-color RGB($shipping_blue)
+	.section
+		display flex
+		flex-direction column
+		align-items center
+	.footer_inpt
+		margin-right 5px
+	.btn
+		background-color RGB($light_blue)
+	&-form
+		padding 33px 0
+		display flex
+		align-items center
+		&_title
+			margin-right 11px
+			font-size 22px
+			line-height 24px
+			color RGB($white)
+	&_bottom
+		padding 82px 0 58px
+		font-size 18px
+		line-height 27px
+		color RGB($white)
+.news
+	padding 25px 0 35px
+	background-color RGB($news_gray)
+	&,&_link
+		color RGB($white)
+	&_title
+		margin-bottom 4px
+		font-size 22px
+		line-height 24px
+	&_text,&_link
+		font-size 14px
+		line-height 20px
+	&_text
+		w 312px
+		margin-right 32px
+	&_link
+		text-decoration underline
+	&-row
+		display flex
+		align-items center
+		justify-content center
+	&-form
+		display flex
+		align-items center
+		column-gap 20px
+	

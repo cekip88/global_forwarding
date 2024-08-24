@@ -1,0 +1,61 @@
+footer.footer
+	.shipping
+		.section
+			form.shipping-form
+				h3.shipping-form_title Get Your Shipping Quote
+				input.footer_inpt(type="text" name="zip" placeholder="Pickup Zip Code")
+				button.btn
+					span Start Quoting
+			.shipping_bottom
+				span *Lowest price guarantee terms and conditions apply.
+	.news
+		.section
+			.news-row
+				.news-col
+					h3.news_title Latest News
+					p.news_text
+						| Get cost savings tips, instant quotes, and new ideas to
+						| help streamline shipping for your small business.
+					a.news_link privacy notice
+				form.news-col.news-form
+					input.footer_inpt(type="text" name="email" placeholder="Enter email address")
+					input.footer_inpt(type="text" name="select" placeholder="Select...")
+					button.btn Keep Me Informed
+	.section
+		.footer-cols
+			.footer-col
+				h5.footer-col_title Global Forwarding
+				a(href="#").footer-col_link About
+				a(href="#").footer-col_link For Carriers
+				a(href="#").footer-col_link Careers
+			.footer-col
+				h5.footer-col_title Support
+				a(href="#").footer-col_link Customer Service
+				a(href="#").footer-col_link FAQ's
+			.footer-col
+				h5.footer-col_title Follow Us
+				a(href="#").footer-col_link LinkedIn
+				a(href="#").footer-col_link Facebook
+				a(href="#").footer-col_link Twitter
+				a(href="#").footer-col_link Youtube
+			.footer-col
+				h5.footer-col_title Stay Up To Date
+				a(href="#").footer-col_link Freightquote Blog
+	.footer-bottom
+		.section
+			.footer-bottom_row
+				span.footer-copy © 2024 Global Forwarding. All Rights Reserved.
+				.footer-bottom_links
+					a(href="#").footer-bottom_link Terms + Conditions
+					a(href="#").footer-bottom_link Global Privacy Notice
+					a(href="#").footer-bottom_link Sitemap
+					a(href="#").footer-bottom_link Your Privacy Rights
+				.head-col.head-logo-cont
+					a(href='/').head-logo
+						img(src='/img/head_logo.png')
+					a(href="tel:8772870804").head-phone
+						svg
+							use(xlink:href="#head_phone")
+						| 877-287-0804
+	include ../../img/sprite.svg
+	script(src='/front.js' type='module')
