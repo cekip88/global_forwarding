@@ -1,7 +1,193 @@
-include  template/main
-append vars
+include  template/vars
+include ../../../../core/mixins/mixins
+include data/data
+doctype html
+html(lang='ru')
 	-
 		page_title = "Home";
-block content
-	section
-		.section
+include template/style
+body.body
+	.set
+		include template/header
+		main.main
+			section.main-banner
+				.section
+					.main-banner_row
+						.main-banner_col
+							h1.main-banner_title Deliver Wisely, Save More
+							p.main-banner_text
+								| Global Forwarding Rewards is your gateway to
+								| smarter shipping and greater savings! Sign up via
+								| your Global Forwarding dashboard to access special
+								| discounts.
+						img(src="/img/main_banner.png").main-banner_img
+					form.main-banner-form
+						.main-banner-form_half
+							label.main-banner-form-label
+								span.main-banner-form-label_text Requested loading date:
+								input(type="date").main-banner-form-label_inpt.footer_inpt
+							label.main-banner-form-label
+								span.main-banner-form-label_text Requested loading date:
+								input(
+									type="text"
+									placeholder="City or postal code"
+								).main-banner-form-label_inpt.footer_inpt
+						svg.main-banner-form_icon
+							use(xlink:href="#route")
+						.main-banner-form_half
+							label.main-banner-form-label
+								span.main-banner-form-label_text Requested loading date:
+								input(type="date").main-banner-form-label_inpt.footer_inpt
+							button.btn Quick quote
+			section.discover
+				.section
+					.discover_block
+						h2.discover_title Global Forwarding Simplifies Freight Shipping
+						p.discover_text
+							| Whether you're looking for a quick shipping quote or need
+							| assistance connecting with carriers, Global Forwarding offers
+							| the tools and technology to meet your LTL, truckload, and parcel
+							| shipping requirements. Our online freight quote tools simplify
+							| the entire shipping process — from selecting a carrier to tracking
+							| your shipments.
+					.discover_block
+						h3.discover_subtitle Discover Solutions for Your Shipping Challenges
+						p.discover_text
+							| With our wide range of shipping options and services, you can
+							| effectively tackle any challenges you face. Explore our freight
+							| services, tailored solutions, or get a free freight quote.
+							| Freightquote streamlines the shipping process, allowing you to
+							| focus on what matters most — running your business.
+						ul.discover_list
+							li.discover-item
+								.discover-item_row
+									h5.discover-item_title No signup quoting
+									svg
+										use(xlink:href="#edit")
+								p.discover-item_text
+									| Shop freight quotes
+									| competitively for the best option
+									| and book today.
+							li.discover-item
+								.discover-item_row
+									h5.discover-item_title Compare vetted carriers
+									svg
+										use(xlink:href="#list")
+								p.discover-item_text
+									| Instantly compare high quality
+									| carriers and competitive
+									| shipping rates.
+							li.discover-item
+								.discover-item_row
+									h5.discover-item_title Proactive shipment alerts
+									svg
+										use(xlink:href="#bell")
+								p.discover-item_text
+									| Track your freight easily
+									| throughout the shipping process.
+			section.section
+				.main-slider
+					button.main-slider_arrow(data-click="front:mainSliderPrev")
+						svg
+							use(xlink:href="#slider_arrow_prev")
+					.main-slider_inner
+						-for(let i = 0; i < 4; i++)
+							.main-slide
+								.main-slide_left
+									iframe(src="https://www.youtube.com/embed/1d8KDO50pb0")
+								.main-slide_right
+									h5.main-slide_title
+										| Global Forwarding
+										| Earn shipping rewards
+									p.main-slide_text
+										| Ship smart and earn rewards. Discover
+										| how simple it is to save money on every
+										| qualifying LTL and truckload shipment you
+										| make.
+									a(href="#").main-slide_link Explore Freightquote Rewards
+					button.main-slider_arrow(data-click="front:mainSliderNext")
+						svg
+							use(xlink:href="#slider_arrow_next")
+					.main-slider_dots(data-click="front:mainSliderDotClick")
+						button.main-slider_dot.active
+						button.main-slider_dot
+						button.main-slider_dot
+						button.main-slider_dot
+			section.section
+				ul.discover_list.shipping_list
+					li.discover-item.shipping-item
+						.discover-item_row.shipping-item_row
+							h5.discover-item_title.shipping-item_title LTL freight shipping
+							img(src="/img/shipping_1.png")
+						p.discover-item_text
+							| View free freight quotes from
+							| top LTL carriers for freight that
+							| doesn't require an entire truck
+							| trailer. Save on fuel and overall
+							| shipping costs by getting the
+							| right deal to move your less-
+							| than-truckload freight.
+						a(href="#").shipping_link
+							| Learn more: LTL freight shipping
+							svg
+								use(xlink:href="#shipping_arrow")
+					li.discover-item.shipping-item
+						.discover-item_row.shipping-item_row
+							h5.discover-item_title.shipping-item_title Truckload freight shipping
+							img(src="/img/shipping_2.png")
+						p.discover-item_text
+							| Whether you need one
+							| truckload or many, we have the
+							| capacity you need to move
+							| freight your way. Take
+							| advantage of our extensive
+							| selection of carrier
+							| relationships to get a great deal
+							| quickly.
+						a(href="#").shipping_link
+							| Learn more: LTL freight shipping
+							svg
+								use(xlink:href="#shipping_arrow")
+					li.discover-item.shipping-item
+						.discover-item_row.shipping-item_row
+							h5.discover-item_title.shipping-item_title Partial truckload shipping
+							img(src="/img/shipping_3.png")
+						p.discover-item_text
+							| Split the cost of a truck with
+							| similar shipments and save
+							| money. Let us handle the details
+							| so that you don't have to sacrifice
+							| timely delivery in order to receive a
+							| great price.
+						a(href="#").shipping_link
+							| Learn more: LTL freight shipping
+							svg
+								use(xlink:href="#shipping_arrow")
+			section.section
+				.trust
+					h3.trust_title Trust Global Forwarding
+					ul.trust_list
+						li.trust-item
+							h5.trust-item_title 96K+ contracted carriers
+							p.trust-item_text
+								| We scorecard carriers on a quarterly basis to
+								| bring you reliable service.
+						li.trust-item
+							h5.trust-item_title 19M+ annual shipments
+							p.trust-item_text
+								| We aggregate volume to offer you competitive
+								| pricing and shipping rates.
+						li.trust-item
+							h5.trust-item_title Trusted by 90K+ customers
+							p.trust-item_text
+								| Experience working with the largest, most
+								| sophisticated shippers to local businesses.
+					p.trust_text
+						| At Global Forwarding, we're dedicated to supporting small
+						| businesses like yours. We pledge to offer you the same
+						| high-quality resources that large corporations enjoy when
+						| shipping their products. With our cutting-edge technologies,
+						| seamless integrations, instant online freight quotes, and
+						| strong carrier partnerships, we provide everything you need to
+						| establish a strong presence in the freight shipping industry.
+		include template/footer
