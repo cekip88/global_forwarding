@@ -1,0 +1,13 @@
+include  vars.pug
+include ../../../../../core/mixins/mixins.pug
+include ../data/data.pug
+doctype html
+html(lang='en')
+	include style
+	body
+		.set
+			include header
+			block main
+				main.main
+					block content
+			include footer
