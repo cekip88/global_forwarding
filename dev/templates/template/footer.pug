@@ -18,8 +18,12 @@ footer.footer
 						| help streamline shipping for your small business.
 					a.news_link privacy notice
 				form.news-col.news-form
-					input.footer_inpt(type="text" name="email" placeholder="Enter email address")
-					input.footer_inpt(type="text" name="select" placeholder="Select...")
+					.news-form_row
+						input.footer_inpt(type="text" name="email" placeholder="Enter email address")
+						select.footer_inpt(name="select")
+							option Select...
+							option USA
+							option Canada
 					button.btn Keep Me Informed
 	.section
 		.footer-cols

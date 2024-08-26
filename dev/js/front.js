@@ -14,6 +14,8 @@ class Front extends G_G {
 		G_Bus.on(_, [
 			'headBurgerClick',
 			'showHeadSubmenu',
+			'showHeadForm',
+			'closeHeadForm',
 			'mainSliderPrev',
 			'mainSliderNext',
 			'mainSliderDotClick',
@@ -71,6 +73,19 @@ class Front extends G_G {
 			list.classList.remove('active');
 			item.classList.remove('active');
 		})
+	}
+
+	showHeadForm({item,event}) {
+		const _ = this;
+		let
+			selector = item.getAttribute('data-target'),
+			elem = document.querySelector(selector);
+
+		elem.classList.add('active');
+	}
+	closeHeadForm({item,event}) {
+		const _ = this;
+		item.closest('FORM').classList.remove('active')
 	}
 
 	mainSliderPrev({item, event}) {

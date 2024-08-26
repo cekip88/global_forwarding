@@ -11,15 +11,16 @@
 	&.active
 		.head
 			&-nav
-				display flex
-	&-row,&-nav
-		display flex
+				&,&-form
+					display flex
 	&-row
+		display flex
 		align-items center
 		column-gap 20px
 		+desktop()
 			flex-direction row
 			justify-content space-between
+			position relative
 	&-logo
 		max-width 140px
 		+desktop()
@@ -49,16 +50,20 @@
 		color RGB($dark_blue)
 		+desktop()
 			display none
-	&-nav
-		w 100%
-		max-height calc(100vh - 150px)
-		column-gap 22px
-		overflow auto
-		display none
+	&-hidden
 		flex-direction column
 		position absolute
 		top 100%
 		left 0
+		+desktop()
+			position static
+	&-nav
+		w 100%
+		max-height calc(100vh - 150px)
+		column-gap 22px
+		flex-direction column
+		overflow auto
+		display none
 		+desktop()
 			w initial
 			display flex
@@ -80,17 +85,17 @@
 				align-items center
 		&-list
 			border-top 1px solid #d6d6d6
-			opacity 0
-			visibility hidden
-			position fixed
-			top 82px
-			left 0
-			right 0
 			+desktop()
 				padding 40px 20px 50px
 				display flex
 				justify-content center
+				opacity 0
+				visibility hidden
 				background-color RGB($white)
+				position fixed
+				top 82px
+				left 0
+				right 0
 			a
 				+desktop()
 					&:hover
@@ -122,9 +127,10 @@
 			flex-direction column
 			position relative
 		&_item
-			height 82px
-			flex-direction row
-			align-items stretch
+			+desktop()
+				height 82px
+				flex-direction row
+				align-items stretch
 		&_btn,&-list_btn,&-sublist_btn
 			padding 10px 20px
 			align-items center
@@ -142,6 +148,7 @@
 				svg
 					transform rotate(180deg)
 		&_btn
+			w 100%
 			background-color #d6d6d6
 			border-bottom 1px solid #c9c9c9
 			+desktop()
@@ -165,14 +172,30 @@
 					.head-nav-list
 						opacity 1
 						visibility visible
+	&-nav,&-track
 		&-form
 			padding 12px 20px
-			display flex
-			align-items center
+			display none
+			justify-content space-between
 			background-color RGB($white)
-			position relative
+			column-gap 10px
+			&.active
+				display flex
 			+desktop()
+				wh calc(100% - 370px), 82px
+				padding-left 0
+				padding-right 100px
 				display none
+				position absolute
+				top 0
+				right 0
+				left initial
+			&,&_left
+				align-items center
+			&_left
+				w 100%
+				display flex
+				position relative
 			&_inpt
 				w 100%
 				padding 12px 13px
@@ -185,9 +208,37 @@
 			&_btn
 				wh 20px
 				position absolute
-				right 40px
+				right 20px
 				svg
 					wh 100%
+			&_close
+				wh 20px
+				display flex
+				align-items center
+				justify-content center
+				position relative
+				&:before,&:after
+					wh 15px,2px
+					background-color RGB($dark_blue)
+					content ''
+					position absolute
+				&:before
+					transform rotate(-45deg)
+				&:after
+					transform rotate(45deg)
+	&-nav
+		&-form
+			&_close
+				display none
+				+desktop()
+					display flex
+	&-track
+		&-form
+			wh 100%,82px
+			display none
+			position fixed
+			top 0
+			left 0
 	&_btns
 		display flex
 		column-gap 10px
@@ -212,6 +263,9 @@
 				display flex
 		svg
 			wh 33px
+button.head-nav-list_btn
+	+desktop()
+		cursor initial
 a.head-nav-list_btn
 	display none
 	+desktop()
@@ -220,7 +274,6 @@ a.head-nav-list_btn + button
 	+desktop()
 		display none
 .footer
-	display: none
 	&_inpt
 		w 210px
 		padding 12px 13px
@@ -233,10 +286,15 @@ a.head-nav-list_btn + button
 		&[type="date"]
 			padding 11px 13px
 	&-cols
-		padding 32px 0 60px
+		padding 32px 0
 		display flex
 		align-items flex-start
+		flex-direction column
 		column-gap 27px
+		row-gap 40px
+		+desktop()
+			padding-bottom 60px
+			flex-direction row
 	&-col
 		w 210px
 		display flex
@@ -255,20 +313,32 @@ a.head-nav-list_btn + button
 		&,&_link
 			color RGB($shipping_blue)
 		&:before
-			wh calc(100% - 100px),1px
-			margin 0 auto 24px
+			wh 100%,1px
+			margin 0 auto 30px
 			display block
 			content ''
 			background-color #CACACA
+			+desktop()
+				w calc(100% - 100px)
+				margin-bottom 24px
 		&_row
 			display flex
-			align-items center
 			justify-content space-between
+			flex-direction column
+			row-gap 20px
+			+desktop()
+				flex-direction row
+				align-items center
 		&_links
 			display flex
 			align-items center
 			column-gap 20px
+			flex-direction column
+			row-gap 20px
+			+desktop()
+				flex-direction row
 		&_link
+			w 100%
 			font-size 14px
 			line-height 16px
 	&-copy
@@ -276,13 +346,15 @@ a.head-nav-list_btn + button
 		line-height 27px
 
 .main
-	display: none
+	padding-top 82px
 	&-banner
-		margin-bottom 122px
-		padding 37px 0
+		padding 37px 0 0
 		background linear-gradient(90deg,rgba(0,0,0,.25),transparent)
 		position relative
+		+desktop()
+			margin-bottom 122px
 		.section
+			padding 0
 			display flex
 			flex-direction column
 			align-items center
@@ -297,9 +369,15 @@ a.head-nav-list_btn + button
 			w 100%
 			padding 0 20px
 			display flex
+			flex-direction column
 			align-items center
+			+desktop()
+				flex-direction row
 		&_col
-			margin-right 80px
+			text-align center
+			+desktop()
+				margin-right 80px
+				text-align left
 		&_title
 			font 48px/57.6px $t_bold
 			color RGB($white)
@@ -309,33 +387,51 @@ a.head-nav-list_btn + button
 			font 24px/28px $y_reg
 			color RGB($white)
 		&_img
+			margin-top 20px
 			margin-bottom 60px
+			+desktop()
+				margin-top 0
 		&-form
 			margin 0 auto
 			padding 42px
-			column-gap 10px
-			border-radius 8px
+			row-gap 30px
+			flex-direction column
 			background-color RGBA($white)
 			box-shadow 0 4px 20px 0 rgba(0,0,0,.06)
-			position absolute
-			top calc(100% - 58px)
-			&,&_half
+			+desktop()
+				flex-direction row
+				column-gap 40px
+				border-radius 8px
+				position absolute
+				top calc(100% - 58px)
+			&,&_col
 				display flex
 				align-items flex-end
-			&_half
-				column-gap 40px
+			&_col
+				column-gap 10px
 			&-label
+				w 100%
 				display flex
 				flex-direction column
 				row-gap 6px
-				font 12px/28px $f_bold
+				font 12px $f_bold
+				+desktop()
+					line-height 28px
 				&_text
 					color RGB($dark_blue)
 				&_inpt
-					w 190px
+					w 100%
+					+desktop()
+						w 190px
 			&_icon
-				wh 20px
-				margin-bottom 17px
+				display none
+				+desktop()
+					wh 20px
+					margin-bottom 17px
+					flex-shrink 0
+					display block
+			&_btn
+				w 100%
 	&-slider
 		padding 60px 0 50px
 		display flex
@@ -345,11 +441,15 @@ a.head-nav-list_btn + button
 		column-gap 68px
 		row-gap 55px
 		&_inner
-			w calc(100% - 200px)
 			display flex
 			align-items center
 			overflow hidden
+			+desktop()
+				w calc(100% - 200px)
 		&_arrow
+			display none
+			+desktop()
+				display block
 			svg
 				wh 31px,62px
 		&_dots
@@ -369,11 +469,16 @@ a.head-nav-list_btn + button
 		flex-shrink 0
 		display flex
 		align-items flex-start
+		flex-direction column
+		row-gap 20px
 		column-gap 45px
 		transition .35s ease
+		+desktop()
+			flex-direction row
 		&_left
-			wh 550px, 310px
 			flex-shrink 0
+			+desktop()
+				wh 550px, 310px
 			iframe
 				wh 100%
 		&_right
@@ -404,28 +509,50 @@ a.head-nav-list_btn + button
 		margin-top 75px
 		display flex
 		align-items flex-start
+		flex-direction column
+		row-gap 32px
+		+desktop()
+			flex-direction row
 	&-item
-		w calc(100% / 3)
+		w 100%
 		padding 0 30px 32px
-		border-right 1px solid #D6D6D6
-		&:first-child
-			padding-left 0
+		border-bottom 1px solid #D6D6D6
 		&:last-child
-			padding-right 0
-			border-right none
+			border-bottom none
+		+desktop()
+			w calc(100% / 3)
+			border-right 1px solid #D6D6D6
+			border-bottom none
+			&:first-child
+				padding-left 0
+			&:last-child
+				padding-right 0
+				border-right none
 		&_row
+			margin-bottom 20px
 			display flex
-			align-items center
-			justify-content space-between
+			flex-direction column
+			row-gap 20px
+			+desktop()
+				margin-bottom 0
+				flex-direction row
+				align-items center
+				justify-content space-between
 			svg
 				wh 80px
 				flex-shrink 0
 		&_title
+			order 1
 			font 22px/28px $t_bold
 			white-space nowrap
+			+desktop()
+				order initial
 		&_text
 			max-width 240px
+			margin-bottom 20px
 			font 18px/27px $y_reg
+			+desktop()
+				margin-bottom 0
 .shipping
 	background-color RGB($shipping_blue)
 	.section
@@ -433,40 +560,61 @@ a.head-nav-list_btn + button
 		flex-direction column
 		align-items center
 	.footer_inpt
-		margin-right 5px
+		w 100%
+		+desktop()
+			w 210px
+			margin-right 5px
 	.btn
+		w 100%
 		background-color RGB($light_blue)
+		+desktop()
+			w initial
 	&-form
+		w 100%
 		padding 33px 0
 		display flex
 		align-items center
+		flex-direction column
+		row-gap 10px
+		+desktop()
+			w initial
+			flex-direction row
 		&_title
-			margin-right 11px
 			font-size 22px
 			line-height 24px
 			color RGB($white)
+			+desktop()
+				margin-right 11px
 	&_bottom
 		padding 82px 0 58px
 		font-size 18px
 		line-height 27px
+		text-align center
 		color RGB($white)
-	&-list
+		+desktop()
+			text-align left
+	&_list
 		margin-top 24px
 		img
 			margin-top -10px
 	&-item
-		padding-bottom 8px
+		padding-bottom 30px
+		+desktop()
+			padding-bottom 8px
 		&_row
 			margin-bottom 15px
 		&_title
 			white-space initial
 	&_link
-		margin-top 45px
-		display flex
-		align-items center
 		column-gap 4px
 		text-transform uppercase
 		color RGB($dark_blue)
+		+desktop()
+			margin-top 45px
+			display block
+		span,svg
+			display inline
+			vertical-align middle
 		svg
 			wh 16px
 .news
@@ -483,28 +631,54 @@ a.head-nav-list_btn + button
 		line-height 20px
 	&_text
 		w 312px
-		margin-right 32px
+		+desktop()
+			margin-right 32px
 	&_link
 		text-decoration underline
 	&-row
 		display flex
 		align-items center
 		justify-content center
+		flex-direction column
+		text-align center
+		+desktop()
+			flex-direction row
+			text-align left
 	&-form
 		display flex
 		align-items center
+		flex-direction column
 		column-gap 20px
+		+desktop()
+			flex-direction row
+		&_row
+			padding 30px 0
+			display flex
+			column-gap 10px
+			+desktop()
+				padding 0
+				column-gap 20px
+			.footer_inpt
+				w 100%
+				+desktop()
+					w 210px
 .trust
-	margin 124px 0 40px
+	margin 40px 0
 	padding 55px 0
 	background-color RGB($light_blue)
 	color RGB($white)
 	text-align center
+	+desktop()
+		margin-top 124px
 	&_title
 		font 32px/28px $t_bold
 	&_list
-		padding 62px 0
+		padding 30px 0
 		display flex
+		flex-direction column
+		+desktop()
+			padding 62px 0
+			flex-direction row
 	&-item
 		padding 8px 50px 20px
 		border-right 1px solid #D6D6D6
@@ -513,7 +687,8 @@ a.head-nav-list_btn + button
 		&_title
 			margin-bottom 20px
 			font 28px/28px $t_bold
-			white-space nowrap
+			+desktop()
+				white-space nowrap
 		&_text
 			font 16px/20px $y_reg
 	&_text

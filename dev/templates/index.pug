@@ -22,23 +22,25 @@ body.body
 								| discounts.
 						img(src="/img/main_banner.png").main-banner_img
 					form.main-banner-form
-						.main-banner-form_half
+						label.main-banner-form-label
+							span.main-banner-form-label_text Requested loading date:
+							input(type="date").main-banner-form-label_inpt.footer_inpt
+						.main-banner-form_col
 							label.main-banner-form-label
-								span.main-banner-form-label_text Requested loading date:
-								input(type="date").main-banner-form-label_inpt.footer_inpt
-							label.main-banner-form-label
-								span.main-banner-form-label_text Requested loading date:
+								span.main-banner-form-label_text Origin:
 								input(
 									type="text"
 									placeholder="City or postal code"
 								).main-banner-form-label_inpt.footer_inpt
-						svg.main-banner-form_icon
-							use(xlink:href="#route")
-						.main-banner-form_half
+							svg.main-banner-form_icon
+								use(xlink:href="#route")
 							label.main-banner-form-label
-								span.main-banner-form-label_text Requested loading date:
-								input(type="date").main-banner-form-label_inpt.footer_inpt
-							button.btn Quick quote
+								span.main-banner-form-label_text Destination:
+								input(
+									type="text"
+									placeholder="City or postal code"
+								).main-banner-form-label_inpt.footer_inpt
+						button.btn.main-banner-form_btn Quick quote
 			section.discover
 				.section
 					.discover_block
@@ -128,7 +130,7 @@ body.body
 							| right deal to move your less-
 							| than-truckload freight.
 						a(href="#").shipping_link
-							| Learn more: LTL freight shipping
+							span Learn more: LTL freight shipping
 							svg
 								use(xlink:href="#shipping_arrow")
 					li.discover-item.shipping-item
@@ -145,7 +147,7 @@ body.body
 							| relationships to get a great deal
 							| quickly.
 						a(href="#").shipping_link
-							| Learn more: LTL freight shipping
+							span Learn more: LTL freight shipping
 							svg
 								use(xlink:href="#shipping_arrow")
 					li.discover-item.shipping-item
@@ -160,7 +162,7 @@ body.body
 							| timely delivery in order to receive a
 							| great price.
 						a(href="#").shipping_link
-							| Learn more: LTL freight shipping
+							span Learn more: LTL freight shipping
 							svg
 								use(xlink:href="#shipping_arrow")
 			section.section
