@@ -1,0 +1,77 @@
+include  template/vars
+include ../../../../core/mixins/mixins
+include data/data
+doctype html
+html(lang='ru')
+	-
+		page_title = "Home";
+	include template/style
+body.body
+	.set
+		include template/header
+		main.main
+			section.fr
+				.fr-top
+					a(href="8007167608").fr-top_link Call us today: (800) 716-7608
+				.fr-middle
+					.section
+						h1.fr-middle_title LTL Freight
+						p.fr-middle_text
+							| Streamline your LTL freight shipping process with FreightCenter, and experience
+							| significant cost savings of up to 95%. Take advantage of our complimentary LTL
+							| freight quote service today. LTL shipping is an ideal solution for transporting
+							| partial truckloads and other goods that do not require full trailer capacity.
+				.fr-bottom
+					.section
+						.fr-bottom-label
+							img(src="img/easy_tracking.png")
+							span Easy Tracking
+						.fr-bottom-label
+							img(src="img/secure_payments.png")
+							span Secure Payments
+						.fr-bottom-label
+							img(src="img/shipping_rewards.png")
+							span Shipping Rewards
+			section.breadcrumbs
+				.section
+					a(href="/").breadcrumbs_link
+						svg
+							use(xlink:href="#home")
+					span /
+					a(href="/services").breadcrumbs_link Services
+					span /
+					span.breadcrumbs_text LTL Freight
+			section.calc
+				form.calc-form
+					.calc-form-block
+						span.calc-form-block_text Shipping option
+						.calc-form_label
+							label.radio
+								input(type="radio" name="option" value="LTL" checked).radio_input
+								span.radio_icon
+								span.radio_text LTL (Less-Than-Truckload)
+							.tip
+								.tip_icon
+									svg
+										use(xlink:href="#question")
+								.tip_text
+									| LTL shipping is used for small freight or when the items don't
+									| require the use of an entire trailer. Your freight is combined
+									| with other shipments to fill an entire trailer. It is ideal for
+									| shipments under 15,000 pounds.
+						.calc-form_label
+							label.radio
+								input(type="radio" name="option" value="FT").radio_input
+								span.radio_icon
+								span.radio_text Full Truckload
+							.tip
+								.tip_icon
+									svg
+										use(xlink:href="#question")
+								.tip_text
+									| Full truckload is used when shippers have enough items to fill
+									| an entire truck or they want their shipment in a trailer all by
+									| itself.
+					.calc-form-block
+						span.calc-form-block_text Pickup and delivery locations
+		include template/footer

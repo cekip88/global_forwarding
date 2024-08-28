@@ -341,12 +341,14 @@ a.head-nav-list_btn + button
 			w 100%
 			font-size 14px
 			line-height 16px
+			+desktop()
+				white-space nowrap
 	&-copy
 		font-size 14px
 		line-height 27px
 
 .main
-	padding-top 82px
+	padding-top 88px
 	&-banner
 		padding 37px 0 0
 		background linear-gradient(90deg,rgba(0,0,0,.25),transparent)
@@ -664,12 +666,17 @@ a.head-nav-list_btn + button
 					w 210px
 .trust
 	margin 40px 0
-	padding 55px 0
 	background-color RGB($light_blue)
 	color RGB($white)
 	text-align center
 	+desktop()
 		margin-top 124px
+		background none
+	.section
+		padding 55px 20px
+		+desktop()
+			padding 55px 0
+			background-color RGB($light_blue)
 	&_title
 		font 32px/28px $t_bold
 	&_list
@@ -680,8 +687,9 @@ a.head-nav-list_btn + button
 			padding 62px 0
 			flex-direction row
 	&-item
-		padding 8px 50px 20px
-		border-right 1px solid #D6D6D6
+		padding 8px 40px 20px
+		+desktop()
+			border-right 1px solid #D6D6D6
 		&:last-child
 			border-right none
 		&_title
@@ -694,3 +702,144 @@ a.head-nav-list_btn + button
 	&_text
 		padding 0 32px
 		font 16px/20px $y_reg
+.fr
+	&-top
+		padding 2px 0
+		background-color #011E49
+		text-align center
+		&_link
+			color RGB($white)
+			font 18px/29px $y_reg
+	&-middle
+		padding 72px 0
+		background-image url("img/new_bg.jpg")
+		background-size cover
+		color RGB($white)
+		position relative
+		&:after
+			wh 100%
+			content ''
+			background-color #00578E
+			opacity .85
+			position absolute
+			top 0
+			left 0
+		.section
+			position relative
+			z-index 1
+		&_title
+			margin-bottom 16px
+			font 48px/58px $t_bold
+			+desktop()
+				max-width 640px
+		&_text
+			font 16px/25px $y_reg
+			+desktop()
+				max-width 639px
+				font-size 18px
+				line-height 28px
+	&-bottom
+		padding 25px 0
+		background-color #081320
+		.section
+			display flex
+			align-items center
+			column-gap 20px
+		&-label
+			display flex
+			align-items center
+			column-gap 10px
+			font 14px/20px $y_reg
+			color RGB($white)
+			+desktop()
+				w 225px
+			svg
+				wh 30px
+				flex-shrink 0
+				+desktop()
+					wh 40px
+.breadcrumbs
+	padding 20px 0 17px
+	.section
+		display flex
+		align-items center
+		column-gap 10px
+	&_link,&_text
+		font 14px/20px $y_reg
+	&_link
+		text-transform uppercase
+		svg
+			wh 18px,20px
+	span
+		color #BCBCBC
+.radio
+	display flex
+	align-items center
+	column-gap 10px
+	&_input
+		display none
+		&:checked
+			& ~ .radio
+				&_icon
+					&:after
+						background-color #F8700D
+	&_icon
+		wh 24px
+		display flex
+		align-items center
+		justify-content center
+		border 1px solid #BCBCBC
+		border-radius 100%
+		&:after
+			wh 10px
+			border-radius 100%
+			content ''
+			display block
+			transition .35s ease
+	&_text
+		font 16px/25px $y_reg
+		color #343A40
+.tip
+	position relative
+	&_icon
+		cursor pointer
+		&:hover
+			& ~ .tip_text
+				opacity 1
+				visibility visible
+		&,svg
+			wh 17px
+	&_text
+		min-width 200px
+		padding: 4px
+		border-radius 4px
+		background-color RGB($white)
+		border 1px solid #e6edf0
+		transform translateX(-50%)
+		font-size 14px
+		line-height 1.2
+		opacity 0
+		visibility hidden
+		position absolute
+		top 100%
+		left 100%
+.calc
+	&-form
+		padding: 24px
+		display: flex
+		flex-direction: column
+		row-gap 24px
+		&_label
+			w 100%
+			display: flex
+			align-items: flex-end
+			column-gap 20px
+		&-block
+			display: flex
+			align-items: center
+			flex-wrap wrap
+			row-gap 18px
+			&_text
+				w 100%
+				font 18px/24px $y_reg
+				color RGB($dark_blue)
