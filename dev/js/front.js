@@ -14,11 +14,10 @@ class Front extends G_G {
 		G_Bus.on(_, [
 			'headBurgerClick',
 			'showHeadSubmenu',
-			'showHeadForm',
-			'closeHeadForm',
-			'mainSliderPrev',
-			'mainSliderNext',
-			'mainSliderDotClick',
+			'showHeadForm', 'closeHeadForm',
+			'mainSliderPrev', 'mainSliderNext', 'mainSliderDotClick',
+			'selectOpen','selectChoose',
+			'findByZip','checkCalcForm',
 		]);
 	}
 
@@ -104,7 +103,6 @@ class Front extends G_G {
 		dots.querySelector('.active').classList.remove('active');
 		dot.classList.add('active');
 	}
-
 	mainSliderNext({item, event}) {
 		const _ = this;
 		let slider = item.previousElementSibling;
@@ -121,7 +119,6 @@ class Front extends G_G {
 		dots.querySelector('.active').classList.remove('active');
 		dot.classList.add('active');
 	}
-
 	mainSliderDotClick({item, event}) {
 		const _ = this;
 		let dot = event.target;
@@ -147,6 +144,70 @@ class Front extends G_G {
 
 		slider.setAttribute('data-offset', offset.toString());
 		slide.style = `margin-left:-${offset * 1 * 100}%`;
+	}
+
+	selectOpen({item}){
+		const _ = this;
+
+		let
+			select = item.closest('.select'),
+			body = select.querySelector('.select_body'),
+			activeOption = body.querySelector('.active');
+
+		if (!select.classList.contains('active')) {
+			select.classList.add('active');
+			if (activeOption) {
+				body.scrollTo(0, activeOption.offsetTop)
+			}
+		} else {
+			select.classList.remove('active')
+		}
+	}
+	selectChoose({item}){
+		const _ = this;
+		let
+			value = item.getAttribute('value') ?? item.textContent,
+			text = item.textContent,
+			select = item.closest('.select'),
+			head = select.querySelector('.select_head'),
+			input = select.querySelector('.select_input'),
+			activeOption = select.querySelector('.select_body .active');
+
+		input.value = value;
+		head.firstElementChild.textContent = text;
+		if (activeOption) activeOption.classList.remove('active');
+		select.classList.remove('active');
+		item.classList.add('active');
+	}
+
+	findByZip({item}) {
+		const _ = this;
+		let form = item.closest('FORM');
+
+		_.checkCalcForm(form)
+	}
+	checkCalcForm({item}) {
+		const _ = this;
+		let form = item.closest('FORM');
+		let inputs = form.querySelectorAll('input[required]');
+		let validation = true;
+		inputs.forEach(input => {
+			let name = input.name;
+			let li = form.querySelector(`#${name}`);
+			if (!input.value) {
+				validation = false;
+				li.classList.remove('hidden')
+			} else {
+				li.classList.add('hidden')
+			}
+		})
+		let tip_text = form.querySelector('.calc-form_submit .tip_text');
+		if (validation) {
+			tip_text.classList.add('hidden')
+		} else {
+			tip_text.classList.remove('hidden')
+		}
+		form.querySelector('.btn').disabled = !validation;
 	}
 }
 

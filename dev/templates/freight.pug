@@ -14,7 +14,7 @@ body.body
 				.fr-top
 					a(href="8007167608").fr-top_link Call us today: (800) 716-7608
 				.fr-middle
-					.section
+					.section_large
 						h1.fr-middle_title LTL Freight
 						p.fr-middle_text
 							| Streamline your LTL freight shipping process with FreightCenter, and experience
@@ -22,7 +22,7 @@ body.body
 							| freight quote service today. LTL shipping is an ideal solution for transporting
 							| partial truckloads and other goods that do not require full trailer capacity.
 				.fr-bottom
-					.section
+					.section_large
 						.fr-bottom-label
 							img(src="img/easy_tracking.png")
 							span Easy Tracking
@@ -32,46 +32,145 @@ body.body
 						.fr-bottom-label
 							img(src="img/shipping_rewards.png")
 							span Shipping Rewards
-			section.breadcrumbs
-				.section
-					a(href="/").breadcrumbs_link
-						svg
-							use(xlink:href="#home")
-					span /
-					a(href="/services").breadcrumbs_link Services
-					span /
-					span.breadcrumbs_text LTL Freight
-			section.calc
-				form.calc-form
-					.calc-form-block
-						span.calc-form-block_text Shipping option
-						.calc-form_label
-							label.radio
-								input(type="radio" name="option" value="LTL" checked).radio_input
-								span.radio_icon
-								span.radio_text LTL (Less-Than-Truckload)
-							.tip
-								.tip_icon
-									svg
-										use(xlink:href="#question")
-								.tip_text
-									| LTL shipping is used for small freight or when the items don't
-									| require the use of an entire trailer. Your freight is combined
-									| with other shipments to fill an entire trailer. It is ideal for
-									| shipments under 15,000 pounds.
-						.calc-form_label
-							label.radio
-								input(type="radio" name="option" value="FT").radio_input
-								span.radio_icon
-								span.radio_text Full Truckload
-							.tip
-								.tip_icon
-									svg
-										use(xlink:href="#question")
-								.tip_text
-									| Full truckload is used when shippers have enough items to fill
-									| an entire truck or they want their shipment in a trailer all by
-									| itself.
-					.calc-form-block
-						span.calc-form-block_text Pickup and delivery locations
+				.breadcrumbs
+					.section_large
+						a(href="/").breadcrumbs_link
+							svg
+								use(xlink:href="#home")
+						span /
+						a(href="/services").breadcrumbs_link Services
+						span /
+						span.breadcrumbs_text LTL Freight
+				.calc
+					form.calc-form
+						h3.calc-form_title Freight rate calculator
+						.calc-form-block
+							span.calc-form-block_text Shipping option
+							.calc-form-block_row
+								.calc-form_label
+									label.radio
+										input(type="radio" name="option" value="LTL" checked).radio_input
+										span.radio_icon
+										span.radio_text LTL (Less-Than-Truckload)
+									.tip
+										.tip_icon
+											svg
+												use(xlink:href="#question")
+										.tip_text
+											| LTL shipping is used for small freight or when the items don't
+											| require the use of an entire trailer. Your freight is combined
+											| with other shipments to fill an entire trailer. It is ideal for
+											| shipments under 15,000 pounds.
+								.calc-form_label
+									label.radio
+										input(type="radio" name="option" value="FT").radio_input
+										span.radio_icon
+										span.radio_text Full Truckload
+									.tip
+										.tip_icon
+											svg
+												use(xlink:href="#question")
+										.tip_text
+											| Full truckload is used when shippers have enough items to fill
+											| an entire truck or they want their shipment in a trailer all by
+											| itself.
+						.calc-form-block
+							span.calc-form-block_text Pickup and delivery locations
+							.calc-form-block_row
+								label.calc-form-inpt
+									span.calc-form-inpt_label Pickup city/ZIP
+									input(
+										type='text'
+										name='pickup_zip'
+										placeholder='_________'
+										data-input="front:findByZip"
+										required
+									).calc-form-inpt_input
+									span.form_error.hidden Please select the Zip code
+								label.calc-form-inpt
+									span.calc-form-inpt_label Destination city/ZIP
+									input(
+										type='text'
+										name='destination_zip'
+										placeholder='_________'
+										data-input="front:findByZip"
+										required
+									).calc-form-inpt_input
+						.calc-form-block
+							.calc-form-block_row
+								.calc-form-block_parts
+									label.calc-form-inpt
+										span.calc-form-inpt_label Length
+										input(
+											type='number'
+											name='length'
+											value='48'
+											placeholder='1000'
+											min='1'
+											data-input="front:checkCalcForm"
+											required
+										).calc-form-inpt_input
+									label.calc-form-inpt
+										span.calc-form-inpt_label Width
+										input(
+											type='number'
+											name='width'
+											value='40'
+											placeholder='1000'
+											min='1'
+											data-input="front:checkCalcForm"
+											required
+										).calc-form-inpt_input
+									label.calc-form-inpt
+										span.calc-form-inpt_label Height
+										input(
+											type='number'
+											name='height'
+											value='48'
+											placeholder='1000'
+											min='1'
+											data-input="front:checkCalcForm"
+											required
+										).calc-form-inpt_input
+									.select.calc-form_select
+										button(type="button" data-click="front:selectOpen").select_head
+											span in
+											svg
+												use(xlink:href="#select_arrow")
+										input(type="text" name="size_type" value='in').select_input
+										.select_body
+											button(type="button" data-click="front:selectChoose").select_option.active in
+											button(type="button" data-click="front:selectChoose").select_option feet
+								.calc-form-block_parts
+									label.calc-form-inpt
+										span.calc-form-inpt_label Weight
+										input(
+											type='number'
+											name='weight'
+											placeholder='1000'
+											min='1'
+											data-input="front:checkCalcForm"
+											required
+										).calc-form-inpt_input
+									.select.calc-form_select
+										button(type="button" data-click="front:selectOpen").select_head
+											span lbs
+											svg
+												use(xlink:href="#select_arrow")
+										input(type="text" name="weight_type" value='lbs').select_input
+										.select_body
+											button(type="button" data-click="front:selectChoose").select_option.active lbs
+											button(type="button" data-click="front:selectChoose").select_option kg
+						.tip.calc-form_submit
+							button.btn(disabled)
+								span View my rates
+							.tip_text.to_top
+								p Oops! We still need this information:
+								ul.calc_validates_list
+									li#pickup_zip Pickup ZIP/Postal code
+									li#destination_zip Destination ZIP/Postal code
+									li#length.hidden Length
+									li#width.hidden Width
+									li#height.hidden Height
+									li#weight Weight
 		include template/footer
