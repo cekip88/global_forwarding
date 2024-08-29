@@ -1,3 +1,8 @@
+@keyframes logos_scroll
+	from
+		transform translate(0,0)
+	to
+		transform translate(-100%,0)
 .head
 	padding 12px 0 18px
 	background-color RGB($white)
@@ -600,6 +605,9 @@ a.head-nav-list_btn + button
 		margin-top 24px
 		img
 			margin-top -10px
+		.shipping_link
+			+desktop()
+				margin-top 45px
 	&-item
 		padding-bottom 30px
 		+desktop()
@@ -609,12 +617,9 @@ a.head-nav-list_btn + button
 		&_title
 			white-space initial
 	&_link
-		column-gap 4px
 		text-transform uppercase
 		color RGB($dark_blue)
-		+desktop()
-			margin-top 45px
-			display block
+		display block
 		span,svg
 			display inline
 			vertical-align middle
@@ -703,6 +708,64 @@ a.head-nav-list_btn + button
 	&_text
 		padding 0 32px
 		font 16px/20px $y_reg
+	&-pilot
+		padding 60px 0
+		.section,.section_large
+			display flex
+			flex-direction column
+			align-items center
+			row-gap 24px
+		&_subtitle
+			font 30px/36px $t_reg
+			text-align center
+			+desktop()
+				font-size 36px
+				line-height 69px
+		&_text
+			max-width 854px
+			font 16px/25px $y_reg
+			text-align center
+		&_list
+			w 100%
+			margin-top 36px
+			+desktop()
+				display flex
+				align-items center
+		&_item
+			display flex
+			flex-direction column
+			align-items center
+		&-score
+			align-items center
+			+desktop()
+				padding 0 18px
+			&_title
+				margin-bottom 12px
+				font 24px/24px $f_bold
+			&-mark
+				margin-bottom 12px
+				display flex
+				align-items center
+				column-gap 3px
+				&_item
+					wh 30px
+					background-color #DCDCE6
+					svg
+						wh 21px,20px
+					&:after
+						background-color #FFCE00
+			&_text
+				margin-bottom 16px
+				font 13px/16px $f_reg
+				a
+					font-family $f_bold
+					text-decoration underline
+	&_signature
+		display none
+		+desktop()
+			margin-top 16px
+			padding-left 20px
+			display block
 .fr
 	+desktop()
 		position relative
@@ -765,6 +828,64 @@ a.head-nav-list_btn + button
 				flex-shrink 0
 				+desktop()
 					wh 40px
+	&-desc
+		.section,.section_large
+			margin-top 20px
+			+desktop()
+				&:first-child
+					margin-top 0
+		&_title,&_list,&_text
+			+desktop()
+				max-width 540px
+			+desktop-large()
+				max-width 625px
+		&_title
+			font 30px/48px $t_reg
+			+desktop()
+				font-size 36px
+				line-height 69px
+		&_text,&_list
+			font 14px/18px $y_reg
+			+desktop()
+				font-size 18px
+				line-height 27px
+		&_list
+			li
+				display flex
+				align-items center
+				column-gap 10px
+				&:not(:last-child)
+					margin-bottom 5px
+			svg
+				wh 14px
+				flex-shrink 0
+	&-rates
+		padding-top 60px
+		.section,.section_large
+			+desktop()
+				display flex
+				column-gap 46px
+		&_photo
+			w 100%
+			+desktop()
+				wh 493px,557px
+				flex-shrink 0
+				img
+					wh 100%
+					object-fit cover
+		&_title
+			font 28px/35px $y_bold
+			+desktop()
+				line-height 45px
+		&_text
+			margin-top 35px
+			font 16px/22px $y_reg
+			+desktop()
+				font-size 18px
+				line-height 29px
+		.btn
+			margin 95px auto 0
+			display block
 .calc
 	padding 0 15px
 	+desktop()
@@ -841,6 +962,8 @@ a.head-nav-list_btn + button
 				border 1px solid #BCBCBC
 				border-radius 24px
 				font 16px/21px $y_reg
+				&:focus
+					border-color #1b4870
 				+desktop()
 					padding 13px 15px 12px
 		&_select
@@ -866,3 +989,234 @@ a.head-nav-list_btn + button
 			list-style disc
 	*.hidden
 		display none
+	&-bottom
+		padding 30px 0
+		display flex
+		flex-direction column
+		row-gap 30px
+		border-bottom 1px solid #CECECE
+.logos
+	w 100%
+	margin-top 50px
+	padding 40px 0
+	background-color #F3F5F6
+	overflow hidden
+	&,&_row
+		display flex
+		align-items center
+	&_row
+		flex-shrink 0
+		animation-name logos_scroll
+		animation-duration 40s
+		animation-iteration-count infinite
+		animation-timing-function linear
+.mark
+	display flex
+	align-items center
+	justify-content center
+	position relative
+	svg
+		position relative
+		z-index 1
+	&:after
+		height 100%
+		content ''
+		position absolute
+		left 0
+		top 0
+	&:nth-child(1)
+		&:after
+			w 100%
+.mark-15
+	.mark
+		&:nth-child(2)
+			&:after
+				w 50%
+.mark-20,.mark-25
+	.mark
+		&:nth-child(2)
+			&:after
+				w 100%
+.mark-25
+	.mark
+		&:nth-child(3)
+			&:after
+				w 50%
+.mark-30,.mark-35
+	.mark
+		&:nth-child(2),&:nth-child(3)
+			&:after
+				w 100%
+.mark-35
+	.mark
+		&:nth-child(4)
+			&:after
+				w 50%
+.mark-40,.mark-45
+	.mark
+		&:nth-child(2),&:nth-child(3),&:nth-child(4)
+			&:after
+				w 100%
+.mark-45
+	.mark
+		&:nth-child(5)
+			&:after
+				w 50%
+.mark-50
+	.mark
+		&:nth-child(1),&:nth-child(2),&:nth-child(3),&:nth-child(4),&:nth-child(5)
+			&:after
+				w 100%
+.reviews
+	&-slider
+		w 100%
+		padding 0 40px
+		+desktop()
+			padding 0 8px
+			display flex
+			align-items center
+			column-gap 8px
+		&_cont
+			margin-top 20px
+			+desktop()
+				w calc(100% - 198px)
+				margin-top 0
+				margin-bottom 16px
+				align-items flex-start
+		&-inner
+			w 100%
+			&_row
+				column-gap 15px
+				display flex
+				align-items flex-start
+				overflow hidden
+		&_button
+			display none
+			+desktop()
+				flex-shrink 0
+				display flex
+				align-items center
+				justify-content center
+				&:disabled
+					opacity .4
+				svg
+					wh 23px
+	&-slide
+		w 100%
+		flex-shrink 0
+		+desktop()
+			w calc((100% - 45px) / 4)
+			padding-left 20px
+		&-mark
+			display flex
+			column-gap 2px
+			&_item
+				wh 18px
+				svg
+					wh 12px
+				&:after
+					background-color #00B67A
+		&_title
+			w 100%
+			margin-top 12px
+			font 14px/1 $f_bold
+			white-space nowrap
+			overflow hidden
+			text-overflow ellipsis
+		&_text
+			display none
+			+desktop()
+				margin-top 7px
+				display block
+				font 13px/16px $f_reg
+		&_signature
+			display none
+			+desktop()
+				margin-top 8px
+				display block
+				opacity .6
+				font 12px/1 $f_reg
+				strong
+					font-family $f_bold
+.shipping
+	&-rates
+		padding 30px 20px
+		background-color RGB($news_gray)
+		text-align center
+		&_title
+			margin-bottom 15px
+			font 32px/38px $y_bold
+			color RGB($white)
+			+desktop()
+				font-size 36px
+				line-height 58px
+		.btn
+			w max-content
+.awards
+	padding 50px 0 88px
+	background-color #004986
+	color RGB($white)
+	&_subtitle,&_title
+		text-align center
+	&_subtitle
+		margin-bottom 11px
+		font 16px/20px $y_bold
+	&_title
+		margin-bottom 40px
+		font 32px/38px $y_bold
+		+desktop()
+			font-size 36px
+			line-height 58px
+	&_lists
+		display flex
+		flex-direction column
+		row-gap 12px
+		+desktop()
+			flex-direction row
+			align-items flex-start
+	&_list
+		display flex
+		flex-direction column
+		row-gap 12px
+		+desktop()
+			w 50%
+	&_item
+		display flex
+		align-items flex-start
+		column-gap 8px
+		font 14px/18px $y_reg
+		svg
+			flex-shrink 0
+			wh 16px,18px
+.info
+	padding 50px 0
+	background-color #E6EDF0
+	+desktop()
+		padding 78px 0
+	&_row
+		display flex
+		align-items center
+		flex-wrap wrap
+		+desktop()
+			column-gap 93px
+	&_col
+		display flex
+		flex-direction column
+		font-family $y_reg
+		strong
+			font 36px/42px $y_bold
+		span
+			font-size 36px
+		&:not(:first-child)
+			w 50%
+			flex-shrink 0
+			margin-top 20px
+			+desktop()
+				w initial
+				margin-top 0
+				row-gap 14px
+			strong
+				color #00578E
+			span
+				font-size 16px
+				line-height 25px
