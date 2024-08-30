@@ -47,16 +47,17 @@ input::-webkit-inner-spin-button
 		background-color gray
 	
 .form
-	&_error
+	&_error,&_under
 		width max-content
 		margin-left 10px
 		font-size 12px
 		line-height 20px
-		color red
 		position absolute
 		bottom -20px
 		&.hidden
 			display none
+	&_error
+		color red
 .breadcrumbs
 	padding 20px 0 17px
 	.section
@@ -135,7 +136,7 @@ input::-webkit-inner-spin-button
 				svg
 					transform rotate(180deg)
 			&_body
-				max-height 200px
+				max-height 300px
 				padding 13px 0 15px
 				overflow-y auto
 				overflow-x hidden

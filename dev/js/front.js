@@ -17,7 +17,7 @@ class Front extends G_G {
 			'showHeadForm', 'closeHeadForm',
 			'mainSliderPrev', 'mainSliderNext', 'mainSliderDotClick',
 			'selectOpen','selectChoose',
-			'findByZip','checkCalcForm',
+			'findByZip','checkCalcForm','changeTrackOption',
 		]);
 	}
 
@@ -180,6 +180,16 @@ class Front extends G_G {
 		item.classList.add('active');
 	}
 
+	changeTrackOption({item}){
+		const _ = this;
+		if (item.value === 'FT') {
+			document.getElementById('ft').classList.add('active');
+			document.getElementById('ltl').classList.remove('active');
+		} else {
+			document.getElementById('ft').classList.remove('active');
+			document.getElementById('ltl').classList.add('active');
+		}
+	}
 	findByZip({item}) {
 		const _ = this;
 		let form = item.closest('FORM');
@@ -189,11 +199,11 @@ class Front extends G_G {
 	checkCalcForm({item}) {
 		const _ = this;
 		let form = item.closest('FORM');
-		let inputs = form.querySelectorAll('input[required]');
+		let inputs = form.querySelectorAll('[required]');
 		let validation = true;
 		inputs.forEach(input => {
 			let name = input.name;
-			let li = form.querySelector(`#${name}`);
+			let li = form.querySelector(`.calc-form_submit .${name}`);
 			if (!input.value) {
 				validation = false;
 				li.classList.remove('hidden')

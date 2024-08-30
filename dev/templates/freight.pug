@@ -42,14 +42,20 @@ body.body
 						span /
 						span.breadcrumbs_text LTL Freight
 				.calc
-					form.calc-form
+					.calc-form
 						h3.calc-form_title Freight rate calculator
 						.calc-form-block
 							span.calc-form-block_text Shipping option
 							.calc-form-block_row
 								.calc-form_label
 									label.radio
-										input(type="radio" name="option" value="LTL" checked).radio_input
+										input(
+											type="radio"
+											name="option"
+											value="LTL"
+											data-change="front:changeTrackOption"
+											checked
+										).radio_input
 										span.radio_icon
 										span.radio_text LTL (Less-Than-Truckload)
 									.tip
@@ -63,7 +69,12 @@ body.body
 											| shipments under 15,000 pounds.
 								.calc-form_label
 									label.radio
-										input(type="radio" name="option" value="FT").radio_input
+										input(
+											type="radio"
+											name="option"
+											value="FT"
+											data-change="front:changeTrackOption"
+										).radio_input
 										span.radio_icon
 										span.radio_text Full Truckload
 									.tip
@@ -74,105 +85,187 @@ body.body
 											| Full truckload is used when shippers have enough items to fill
 											| an entire truck or they want their shipment in a trailer all by
 											| itself.
-						.calc-form-block
-							span.calc-form-block_text Pickup and delivery locations
-							.calc-form-block_row
-								label.calc-form-inpt
-									span.calc-form-inpt_label Pickup city/ZIP
-									input(
-										type='text'
-										name='pickup_zip'
-										placeholder='_________'
-										data-input="front:findByZip"
-										required
-									).calc-form-inpt_input
-									span.form_error.hidden Please select the Zip code
-								label.calc-form-inpt
-									span.calc-form-inpt_label Destination city/ZIP
-									input(
-										type='text'
-										name='destination_zip'
-										placeholder='_________'
-										data-input="front:findByZip"
-										required
-									).calc-form-inpt_input
-						.calc-form-block
-							.calc-form-block_row
-								.calc-form-block_parts
+						form.calc-form_item.active#ltl
+							.calc-form-block
+								span.calc-form-block_text Pickup and delivery locations
+								.calc-form-block_row
 									label.calc-form-inpt
-										span.calc-form-inpt_label Length
+										span.calc-form-inpt_label Pickup city/ZIP
 										input(
-											type='number'
-											name='length'
-											value='48'
-											placeholder='1000'
-											min='1'
-											data-input="front:checkCalcForm"
+											type='text'
+											name='pickup_zip'
+											placeholder='_________'
+											data-input="front:findByZip"
 											required
 										).calc-form-inpt_input
+										span.form_error.hidden Please select the Zip code
 									label.calc-form-inpt
-										span.calc-form-inpt_label Width
+										span.calc-form-inpt_label Destination city/ZIP
 										input(
-											type='number'
-											name='width'
-											value='40'
-											placeholder='1000'
-											min='1'
-											data-input="front:checkCalcForm"
+											type='text'
+											name='destination_zip'
+											placeholder='_________'
+											data-input="front:findByZip"
 											required
 										).calc-form-inpt_input
+							.calc-form-block
+								span.calc-form-block_text Shipment information
+								.calc-form-block_row
+									.calc-form-block_parts
+										label.calc-form-inpt
+											span.calc-form-inpt_label Length
+											input(
+												type='number'
+												name='length'
+												value='48'
+												placeholder='1000'
+												min='1'
+												data-input="front:checkCalcForm"
+												required
+											).calc-form-inpt_input
+										label.calc-form-inpt
+											span.calc-form-inpt_label Width
+											input(
+												type='number'
+												name='width'
+												value='40'
+												placeholder='1000'
+												min='1'
+												data-input="front:checkCalcForm"
+												required
+											).calc-form-inpt_input
+										label.calc-form-inpt
+											span.calc-form-inpt_label Height
+											input(
+												type='number'
+												name='height'
+												value='48'
+												placeholder='1000'
+												min='1'
+												data-input="front:checkCalcForm"
+												required
+											).calc-form-inpt_input
+										.select.calc-form_select
+											button(type="button" data-click="front:selectOpen").select_head
+												span in
+												svg
+													use(xlink:href="#select_arrow")
+											input(type="text" name="size_type" value='in').select_input
+											.select_body
+												button(type="button" data-click="front:selectChoose").select_option.active in
+												button(type="button" data-click="front:selectChoose").select_option feet
+									.calc-form-block_parts
+										label.calc-form-inpt
+											span.calc-form-inpt_label Weight
+											input(
+												type='number'
+												name='weight'
+												placeholder='1000'
+												min='1'
+												data-input="front:checkCalcForm"
+												required
+											).calc-form-inpt_input
+										.select.calc-form_select
+											button(type="button" data-click="front:selectOpen").select_head
+												span lbs
+												svg
+													use(xlink:href="#select_arrow")
+											input(type="text" name="weight_type" value='lbs').select_input
+											.select_body
+												button(type="button" data-click="front:selectChoose").select_option.active lbs
+												button(type="button" data-click="front:selectChoose").select_option kg
+							.tip.calc-form_submit
+								button.btn(disabled)
+									span View my rates
+								.tip_text.to_top
+									p Oops! We still need this information:
+									ul.calc_validates_list
+										li.pickup_zip Pickup ZIP/Postal code
+										li.destination_zip Destination ZIP/Postal code
+										li.length.hidden Length
+										li.width.hidden Width
+										li.height.hidden Height
+										li.weight Weight
+						form.calc-form_item#ft
+							.calc-form-block
+								span.calc-form-block_text Pickup and delivery locations
+								.calc-form-block_row
 									label.calc-form-inpt
-										span.calc-form-inpt_label Height
+										span.calc-form-inpt_label Pickup city/ZIP
 										input(
-											type='number'
-											name='height'
-											value='48'
-											placeholder='1000'
-											min='1'
-											data-input="front:checkCalcForm"
+											type='text'
+											name='pickup_zip'
+											placeholder='_________'
+											data-input="front:findByZip"
 											required
 										).calc-form-inpt_input
-									.select.calc-form_select
-										button(type="button" data-click="front:selectOpen").select_head
-											span in
-											svg
-												use(xlink:href="#select_arrow")
-										input(type="text" name="size_type" value='in').select_input
-										.select_body
-											button(type="button" data-click="front:selectChoose").select_option.active in
-											button(type="button" data-click="front:selectChoose").select_option feet
-								.calc-form-block_parts
+										span.form_error.hidden Please select the Zip code
 									label.calc-form-inpt
-										span.calc-form-inpt_label Weight
+										span.calc-form-inpt_label Destination city/ZIP
 										input(
-											type='number'
-											name='weight'
-											placeholder='1000'
-											min='1'
-											data-input="front:checkCalcForm"
+											type='text'
+											name='destination_zip'
+											placeholder='_________'
+											data-input="front:findByZip"
 											required
 										).calc-form-inpt_input
-									.select.calc-form_select
-										button(type="button" data-click="front:selectOpen").select_head
-											span lbs
-											svg
-												use(xlink:href="#select_arrow")
-										input(type="text" name="weight_type" value='lbs').select_input
-										.select_body
-											button(type="button" data-click="front:selectChoose").select_option.active lbs
-											button(type="button" data-click="front:selectChoose").select_option kg
-						.tip.calc-form_submit
-							button.btn(disabled)
-								span View my rates
-							.tip_text.to_top
-								p Oops! We still need this information:
-								ul.calc_validates_list
-									li#pickup_zip Pickup ZIP/Postal code
-									li#destination_zip Destination ZIP/Postal code
-									li#length.hidden Length
-									li#width.hidden Width
-									li#height.hidden Height
-									li#weight Weight
+							.calc-form-block
+								span.calc-form-block_text Shipment information
+								.calc-form-block_row
+									.calc-form-block_parts
+										label.calc-form-inpt
+											span.calc-form-inpt_label Weight
+											input(
+												type='number'
+												name='weight'
+												placeholder='1000'
+												min='1'
+												data-input="front:checkCalcForm"
+												required
+											).calc-form-inpt_input
+										.select.calc-form_select
+											button(type="button" data-click="front:selectOpen").select_head
+												span lbs
+												svg
+													use(xlink:href="#select_arrow")
+											input(type="text" name="weight_type" value='lbs').select_input
+											.select_body
+												button(type="button" data-click="front:selectChoose").select_option.active lbs
+												button(type="button" data-click="front:selectChoose").select_option kg
+									label.calc-form-inpt.w-full
+										span.calc-form-inpt_label Choose Equipment
+										.select.calc-form_select
+											button(type="button" data-click="front:selectOpen").select_head
+												span Drayage
+												svg
+													use(xlink:href="#select_arrow")
+											input(type="text" name="weight_type" value='Drayage').select_input
+											.select_body
+												button(type="button" data-click="front:selectChoose").select_option.active Drayage
+												button(type="button" data-click="front:selectChoose").select_option Flatbed
+												button(type="button" data-click="front:selectChoose").select_option Intermodal
+												button(type="button" data-click="front:selectChoose").select_option Lowboy
+												button(type="button" data-click="front:selectChoose").select_option Ocean
+												button(type="button" data-click="front:selectChoose").select_option Power-only
+												button(type="button" data-click="front:selectChoose").select_option Reefer
+												button(type="button" data-click="front:selectChoose").select_option Van
+												button(type="button" data-click="front:selectChoose").select_option Other
+												button(type="button" data-click="front:selectChoose").select_option I don't know
+							.calc-form-block
+								.calc-form-inpt.w-full
+									span.calc-form-inpt_label What are you shipping?
+									textarea(name="calc_info" data-input="front:checkCalcForm" required).calc-form-inpt_textarea
+									span.form_under limit of 70 characters
+							.tip.calc-form_submit
+								button.btn(disabled)
+									span View my rates
+								.tip_text.to_top
+									p Oops! We still need this information:
+									ul.calc_validates_list
+										li.pickup_zip Pickup ZIP/Postal code
+										li.destination_zip Destination ZIP/Postal code
+										li.weight Weight
+										li.calc_info What are you shipping
 					.calc-bottom
 						h5.calc-bottom_title Want To Learn More About Truckload Shipping?
 						a(href='#').shipping_link
