@@ -860,7 +860,7 @@ a.head-nav-list_btn + button
 				wh 14px
 				flex-shrink 0
 	&-rates
-		padding-top 60px
+		padding 60px 0
 		.section,.section_large
 			+desktop()
 				display flex
@@ -883,6 +883,8 @@ a.head-nav-list_btn + button
 			+desktop()
 				font-size 18px
 				line-height 29px
+			strong
+				font-family $y_bold
 		.btn
 			margin 95px auto 0
 			display block
@@ -1242,3 +1244,150 @@ a.head-nav-list_btn + button
 			span
 				font-size 16px
 				line-height 25px
+.delivery
+	&-banner
+		padding 26px 20px 23px
+		background-color RGB($dark_blue)
+		font 32px/38px $f_light
+		color RGB($white)
+		text-align center
+		+desktop()
+			font-size 48px
+			line-height 1
+	&-buttons
+		padding 20px 0 40px
+		display flex
+		&_item
+			w 119px
+			background-color RGB($white)
+			border 2px solid #DD4A2D
+			font 16px/28px $f_reg
+			text-align center
+			color #DD4A2D
+			&.active
+				background-color #DD4A2D
+				color RGB($white)
+			&:first-child
+				border-top-left-radius 4px
+				border-bottom-left-radius 4px
+			&:last-child
+				border-top-right-radius 4px
+				border-bottom-right-radius 4px
+.guided
+	display none
+	&.active
+		display block
+	&-steps
+		display flex
+		align-items flex-start
+		flex-wrap wrap
+		row-gap 10px
+		position relative
+		+tablet()
+			flex-wrap nowrap
+			justify-content space-between
+		&:before
+			+tablet()
+				wh calc(100% - 100px),4px
+				background-color #E3E3E3
+				content ''
+				position absolute
+				top 17px
+				left 0
+		&_item
+			w 50%
+			display flex
+			align-items center
+			column-gap 10px
+			font 16px/28px $f_reg
+			position relative
+			&.active
+				&:after
+					opacity 1
+			&:last-child
+				w 100px
+			&:before,&:after
+				flex-shrink 0
+				border-radius 100%
+				content ''
+				display block
+			&:before
+				wh 38px
+				background-color #B9E4FF
+				top 0
+				left 0
+			&:after
+				wh 14px
+				background-color #5CC0FF
+				opacity 0.2
+				position absolute
+				top 12px
+				left 12px
+			+tablet()
+				w initial
+				padding-top 48px
+				display block
+				&:before
+					position absolute
+		&_actions
+			display flex
+			justify-content flex-end
+			.btn
+				background-color #5CC0FF
+				border-radius 4px
+	&-plates
+		padding 40px 0
+		display flex
+		flex-direction column
+		align-items stretch
+		gap 20px
+		+tablet()
+			flex-direction row
+		&-radio
+			w 100%
+			&_inner
+				height 100%
+				padding 20px
+				display flex
+				flex-direction column
+				align-items flex-start
+				background-color #ECECEC
+				border 2px solid #AFC6D5
+				border-radius 8px
+				color #A9BFD1
+				transition .35s ease
+		&_input
+			display none
+			&:checked
+				& ~ .guided-plates
+					&-radio_inner
+						background-color #5CC0FF1A
+						border-color #5CC0FF
+						.guided-plates
+							&_icon
+								border-color #5CC0FF
+								&:after
+									background-color #5CC0FF
+		&_icon
+			wh 24px
+			display flex
+			align-items center
+			justify-content center
+			border 1px solid #AFC6D5
+			border-radius 100%
+			&:after
+				wh 12px
+				border-radius 100%
+				content ''
+				display block
+				transition .35s ease
+		&_img
+			margin 6px 0 34px auto
+		&_title
+			font 12px/28px $f_bold
+		&_text
+			font 12px/14px $f_reg
+.quick
+	display none
+	&.active
+		display block

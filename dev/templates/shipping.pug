@@ -1,0 +1,69 @@
+include  template/vars
+include ../../../../core/mixins/mixins
+include data/data
+doctype html
+html(lang='ru')
+	-
+		page_title = "Home";
+	include template/style
+body.body
+	.set
+		include template/header
+		main.main
+			section.delivery
+				.delivery-banner.guided
+					| What service would you like to quote?
+				.section_small.guided
+					.delivery-buttons
+						.delivery-buttons_item.active Guided
+						button.delivery-buttons_item Quick
+					.guided-steps
+						.guided-steps_item.active Quote
+						.guided-steps_item Order Details
+						.guided-steps_item Payment
+						.guided-steps_item Complete
+					.guided-plates
+						label.guided-plates-radio
+							input(type="radio" name="quote" value="all" checked).guided-plates_input
+							.guided-plates-radio_inner
+								.guided-plates_icon
+								.guided-plates_img
+									img(src="img/quote_compare_all_services.png")
+								h5.guided-plates_title Compare all services
+								p.guided-plates_text Compare available LTL, truckload, and small parcel quotes.
+						label.guided-plates-radio
+							input(type="radio" name="quote" value="ltl").guided-plates_input
+							.guided-plates-radio_inner
+								.guided-plates_icon
+								.guided-plates_img
+									img(src="img/quote_ltl.png")
+								h5.guided-plates_title LTL
+								p.guided-plates_text Less than truckload quotes.
+						label.guided-plates-radio
+							input(type="radio" name="quote" value="full").guided-plates_input
+							.guided-plates-radio_inner
+								.guided-plates_icon
+								.guided-plates_img
+									img(src="img/quote_full_truckload.png")
+								h5.guided-plates_title Full truckload
+								p.guided-plates_text Quotes for dry van, flatbed, and temp controlled.
+						label.guided-plates-radio
+							input(type="radio" name="quote" value="small").guided-plates_input
+							.guided-plates-radio_inner
+								.guided-plates_icon
+								.guided-plates_img
+									img(src="img/quote_small_parcel.png")
+								h5.guided-plates_title Small parcel
+								p.guided-plates_text Quotes for booking with a small parcel carrier.
+					.guided-steps_actions
+						button.btn Next
+				.delivery-banner.quick.active
+					| Instant LTL Cargo Shipping Rates Quote
+				.section_small.quick.active
+					.delivery-buttons
+						button.delivery-buttons_item Guided
+						.delivery-buttons_item.active Quick
+					.quick-form
+						.quick-aside
+
+		include template/footer

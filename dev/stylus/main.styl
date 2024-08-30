@@ -19,16 +19,20 @@ a
 	display: flex
 	flex-direction: column
 .section
-	&,&_large
+	&,&_large,&_small
 		padding 0 20px
 		+tablet()
 			w 720px
 			padding 0
 			margin 0 auto
+	&,&_large
 		+tablet-large()
 			w 980px
 		+desktop()
 			w 1200px
+	&_small
+		+tablet-large()
+			w 930px
 	&_large
 		+desktop-large()
 			w 1320px
