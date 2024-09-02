@@ -194,7 +194,7 @@ class Front extends G_G {
 		const _ = this;
 		let form = item.closest('FORM');
 
-		_.checkCalcForm(form)
+		_.checkCalcForm({item})
 	}
 	checkCalcForm({item}) {
 		const _ = this;
