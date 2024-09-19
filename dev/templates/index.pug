@@ -14,12 +14,13 @@ body.body
 				.section
 					.main-banner_row
 						.main-banner_col
-							h1.main-banner_title Deliver Wisely, Save More
+							h1.main-banner_title Freight Shipping Quotes
+							h3.main-banner_subtitle LTL & Full Truckload
 							p.main-banner_text
-								| Global Forwarding Rewards is your gateway to
-								| smarter shipping and greater savings! Sign up via
-								| your Global Forwarding dashboard to access special
-								| discounts.
+								| FreightCenter provides easy, fast, and free shipping quotes for businesses
+								| of all sizes. Compare rates from top carriers and enjoy hassle-free booking,
+								| tracking, and payment options. At FreightCenter, we deliver personalized
+								| solutions that meet your unique shipping needs.
 						img(src="/img/main_banner.png").main-banner_img
 					form.main-banner-form
 						label.main-banner-form-label
@@ -96,17 +97,34 @@ body.body
 						-for(let i = 0; i < 4; i++)
 							.main-slide
 								.main-slide_left
-									iframe(src="https://www.youtube.com/embed/1d8KDO50pb0")
+									.mark-row.mark-35
+										.mark
+											svg
+												use(xlink:href="#star")
+										.mark
+											svg
+												use(xlink:href="#star")
+										.mark
+											svg
+												use(xlink:href="#star")
+										.mark
+											svg
+												use(xlink:href="#star")
+										.mark
+											svg
+												use(xlink:href="#star")
+									img(src="/img/customer-1.jpg")
 								.main-slide_right
 									h5.main-slide_title
-										| Global Forwarding
-										| Earn shipping rewards
+										| What customers say
 									p.main-slide_text
-										| Ship smart and earn rewards. Discover
-										| how simple it is to save money on every
-										| qualifying LTL and truckload shipment you
-										| make.
-									a(href="#").main-slide_link Explore Freightquote Rewards
+										| "For two years and counting, I have been using this platform that offers
+										| the best prices and is incredibly user-friendly. It has made my life so
+										| much easier, and I highly recommend it to anyone looking for a reliable solution."
+										br
+										br
+										| -Alex T. Freightquote customer
+									a(href="#").main-slide_link Get quoting
 					button.main-slider_arrow(data-click="front:mainSliderNext")
 						svg
 							use(xlink:href="#slider_arrow_next")

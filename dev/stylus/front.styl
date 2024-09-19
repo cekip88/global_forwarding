@@ -78,9 +78,6 @@
 			position static
 		&-list,&-sublist
 			w 100%
-			max-height 0
-			overflow hidden
-			transition .35s ease
 			&.active
 				max-height 185px
 			&.showed
@@ -91,10 +88,14 @@
 				align-items center
 		&-list
 			border-top 1px solid #d6d6d6
+			max-height 0
+			overflow hidden
+			transition .35s ease
 			+desktop()
 				padding 40px 20px 50px
 				display flex
-				justify-content center
+				flex-direction: column
+				align-items: center
 				opacity 0
 				visibility hidden
 				background-color RGB($white)
@@ -120,6 +121,8 @@
 					svg
 						display none
 		&-sublist
+			+desktop()
+				w max-content
 			&_item
 				+desktop()
 					margin-bottom 20px
@@ -247,6 +250,7 @@
 			left 0
 	&_btns
 		display flex
+		align-items: center
 		column-gap 10px
 		+desktop()
 			column-gap 20px
@@ -291,29 +295,6 @@ a.head-nav-list_btn + button
 		color RGB($inpt_gray)
 		&[type="date"]
 			padding 11px 13px
-	&-cols
-		padding 32px 0
-		display flex
-		align-items flex-start
-		flex-direction column
-		column-gap 27px
-		row-gap 40px
-		+desktop()
-			padding-bottom 60px
-			flex-direction row
-	&-col
-		w 210px
-		display flex
-		flex-direction column
-		row-gap 12px
-		&_title
-			font 12px/17px $t_bold
-			color RGB($shipping_blue)
-			text-transform uppercase
-		&_link
-			font-size 14px
-			line-height 16px
-			color RGB($shipping_blue)
 	&-bottom
 		padding-bottom 24px
 		&,&_link
@@ -353,8 +334,76 @@ a.head-nav-list_btn + button
 		font-size 14px
 		line-height 27px
 
+
+.mark
+	wh 25px
+	display flex
+	align-items center
+	justify-content center
+	background-color: #DCDCE6
+	position relative
+	&-row
+		display: flex
+		align-items: center
+		column-gap 2px
+	svg
+		wh 19px
+	&:after
+		background-color #00B67A
+	svg
+		position relative
+		z-index 1
+	&:after
+		height 100%
+		content ''
+		position absolute
+		left 0
+		top 0
+	&:nth-child(1)
+		&:after
+			w 100%
+.mark-15
+	.mark
+		&:nth-child(2)
+			&:after
+				w 50%
+.mark-20,.mark-25
+	.mark
+		&:nth-child(2)
+			&:after
+				w 100%
+.mark-25
+	.mark
+		&:nth-child(3)
+			&:after
+				w 50%
+.mark-30,.mark-35
+	.mark
+		&:nth-child(2),&:nth-child(3)
+			&:after
+				w 100%
+.mark-35
+	.mark
+		&:nth-child(4)
+			&:after
+				w 50%
+.mark-40,.mark-45
+	.mark
+		&:nth-child(2),&:nth-child(3),&:nth-child(4)
+			&:after
+				w 100%
+.mark-45
+	.mark
+		&:nth-child(5)
+			&:after
+				w 50%
+.mark-50
+	.mark
+		&:nth-child(1),&:nth-child(2),&:nth-child(3),&:nth-child(4),&:nth-child(5)
+			&:after
+				w 100%
 .main
-	padding-top 88px
+	padding-top 82px
 	&-banner
 		padding 37px 0 0
 		background linear-gradient(90deg,rgba(0,0,0,.25),transparent)
@@ -380,6 +429,7 @@ a.head-nav-list_btn + button
 			flex-direction column
 			align-items center
 			+desktop()
+				padding-bottom: 60px
 				flex-direction row
 		&_col
 			text-align center
@@ -388,6 +438,10 @@ a.head-nav-list_btn + button
 				text-align left
 		&_title
 			font 48px/57.6px $t_bold
+			color RGB($white)
+		&_subtitle
+			margin-top: 20px
+			font 24px/28px $t_bold
 			color RGB($white)
 		&_text
 			max-width 530px
@@ -485,8 +539,16 @@ a.head-nav-list_btn + button
 			flex-direction row
 		&_left
 			flex-shrink 0
+			position: relative
 			+desktop()
-				wh 550px, 310px
+				wh 550px,310px
+			.mark-row
+				position: absolute
+				bottom 20px
+				left 20px
+			img
+				wh 100%
+				object-fit cover
 			iframe
 				wh 100%
 		&_right
@@ -749,7 +811,6 @@ a.head-nav-list_btn + button
 				column-gap 3px
 				&_item
 					wh 30px
-					background-color #DCDCE6
 					svg
 						wh 21px,20px
 					&:after
@@ -812,6 +873,8 @@ a.head-nav-list_btn + button
 		.section_large
 			display flex
 			align-items center
+			flex-wrap wrap
+			row-gap 10px
 			column-gap 20px
 		&-label
 			display flex
@@ -829,6 +892,7 @@ a.head-nav-list_btn + button
 				+desktop()
 					wh 40px
 	&-desc
+		padding-bottom: 60px
 		.section,.section_large
 			margin-top 20px
 			+desktop()
@@ -867,9 +931,11 @@ a.head-nav-list_btn + button
 				column-gap 46px
 		&_photo
 			w 100%
+			margin-bottom: 20px
 			+desktop()
 				wh 493px,557px
 				flex-shrink 0
+				margin-bottom: 0
 				img
 					wh 100%
 					object-fit cover
@@ -886,7 +952,46 @@ a.head-nav-list_btn + button
 			strong
 				font-family $y_bold
 		.btn
-			margin 95px auto 0
+			margin-top 95px
+			display block
+.tl
+	&-rates
+		padding 60px 0
+		background-color: #E5E5E5
+		.section,.section_large
+			+desktop()
+				display flex
+				column-gap 46px
+		&_photo
+			w 100%
+			margin-bottom: 20px
+			img
+				w 100%
+			+desktop()
+				w 493px
+				flex-shrink 0
+				margin-bottom: 0
+				img
+					w 300px
+					object-fit cover
+			&_full
+				img
+					+desktop()
+						w 460px
+		&_title
+			font 28px/35px $y_bold
+			+desktop()
+				line-height 45px
+		&_text
+			margin-top 35px
+			font 16px/22px $y_reg
+			+desktop()
+				font-size 18px
+				line-height 29px
+			strong
+				font-family $y_bold
+		.btn
+			margin-top 95px
 			display block
 .calc
 	padding 0 15px
@@ -920,6 +1025,10 @@ a.head-nav-list_btn + button
 			display flex
 			align-items flex-end
 			column-gap 20px
+			.radio
+				w 100%
+				+tablet()
+					w initial
 		&-block
 			&_row
 				display flex
@@ -956,12 +1065,13 @@ a.head-nav-list_btn + button
 							.calc-form-inpt_input
 								border-radius 24px 0 0 24px
 		&-inpt
-			w calc(50% - 8px)
 			display flex
 			flex-direction column
 			align-items flex-start
 			row-gap 8px
 			position relative
+			+mobile-large()
+				w calc(50% - 8px)
 			&_label
 				font 14px/20px $y_reg
 				color #7C7D81
@@ -1019,78 +1129,6 @@ a.head-nav-list_btn + button
 		flex-direction column
 		row-gap 30px
 		border-bottom 1px solid #CECECE
-.logos
-	w 100%
-	margin-top 50px
-	padding 40px 0
-	background-color #F3F5F6
-	overflow hidden
-	&,&_row
-		display flex
-		align-items center
-	&_row
-		flex-shrink 0
-		animation-name logos_scroll
-		animation-duration 40s
-		animation-iteration-count infinite
-		animation-timing-function linear
-.mark
-	display flex
-	align-items center
-	justify-content center
-	position relative
-	svg
-		position relative
-		z-index 1
-	&:after
-		height 100%
-		content ''
-		position absolute
-		left 0
-		top 0
-	&:nth-child(1)
-		&:after
-			w 100%
-.mark-15
-	.mark
-		&:nth-child(2)
-			&:after
-				w 50%
-.mark-20,.mark-25
-	.mark
-		&:nth-child(2)
-			&:after
-				w 100%
-.mark-25
-	.mark
-		&:nth-child(3)
-			&:after
-				w 50%
-.mark-30,.mark-35
-	.mark
-		&:nth-child(2),&:nth-child(3)
-			&:after
-				w 100%
-.mark-35
-	.mark
-		&:nth-child(4)
-			&:after
-				w 50%
-.mark-40,.mark-45
-	.mark
-		&:nth-child(2),&:nth-child(3),&:nth-child(4)
-			&:after
-				w 100%
-.mark-45
-	.mark
-		&:nth-child(5)
-			&:after
-				w 50%
-.mark-50
-	.mark
-		&:nth-child(1),&:nth-child(2),&:nth-child(3),&:nth-child(4),&:nth-child(5)
-			&:after
-				w 100%
 .reviews
 	&-slider
 		w 100%
@@ -1138,8 +1176,6 @@ a.head-nav-list_btn + button
 				wh 18px
 				svg
 					wh 12px
-				&:after
-					background-color #00B67A
 		&_title
 			w 100%
 			margin-top 12px
@@ -1176,6 +1212,11 @@ a.head-nav-list_btn + button
 				line-height 58px
 		.btn
 			w max-content
+	&-rates.tl
+		background-color #004986
+		.btn
+			background-color #fff
+			color RGB($dark_blue)
 .awards
 	padding 50px 0 88px
 	background-color #004986
@@ -1212,6 +1253,9 @@ a.head-nav-list_btn + button
 		svg
 			flex-shrink 0
 			wh 16px,18px
+	&.tl
+		background-color #E6EDF0
+		color RGB($dark_gray)
 .info
 	padding 50px 0
 	background-color #E6EDF0
@@ -1391,3 +1435,226 @@ a.head-nav-list_btn + button
 	display none
 	&.active
 		display block
+.comparison
+	padding: 20px 0 40px
+	+desktop()
+		padding-bottom: 60px
+	&_inner
+		+desktop()
+			padding-left: 40px
+	&_title
+		margin-top: 24px
+		font 24px/30px $f_bold
+		+desktop()
+			margin-top: 48px
+			font-size: 36px
+			line-height: 58px
+	&_subtitle
+		margin-top: 20px
+		font 18px/24px $f_bold
+		+desktop()
+			margin-top: 40px
+			font-size: 28px
+			line-height: 45px
+	&_text
+		margin-top: 20px
+		font 14px/18px $f_reg
+		+desktop()
+			margin-top: 43px
+			font-size 18px
+			line-height: 29px
+		strong
+			font-family $f_bold
+			&.red
+				color #FF0000
+			&.green
+				color #008000
+	&_link
+		color #5D7AA4
+		text-decoration: underline
+	.fr-desc_list
+		margin-top: 20px
+		+desktop()
+			margin-top: 43px
+	&_answer
+		display: flex
+		align-items: flex-start
+		column-gap 5px
+		+desktop()
+			padding-left: 40px
+.banner
+	background-image: url("/img/parcel-banner-bgc.jpg")
+	background-size: cover
+	background-position: center
+	&_inner
+		padding: 70px 0
+		+desktop()
+			padding: 136px 0
+	&_title
+		font 24px/1.1 $f_bold
+		color #fff
+		text-transform: uppercase
+		+desktop()
+			font-size: 46px
+	&_text
+		margin-top: 5px
+		font 14px/18px $f_reg
+		color #fff
+		+desktop()
+			font-size: 18px
+			line-height: 28px
+.parcel
+	&-info
+		padding: 50px 20px
+		display: flex
+		flex-direction: column
+		align-items: center
+		+desktop()
+			padding: 100px 0
+		&_title,&_text
+			text-align: center
+		&_title
+			font 28px/1.25 $f_light
+			+desktop()
+				font-size: 55px
+		&_text
+			margin: 30px 0
+			+desktop()
+				max-width 530px
+				margin-top: 60px
+				margin-bottom: 44px
+		&_imgs
+			margin-top: 30px
+			display: flex
+			align-items: center
+			flex-direction: column
+			+tablet()
+				margin-top: 16px
+				flex-direction: row
+	&-how
+		padding: 50px 0
+		+desktop()
+			padding: 100px 0 123px
+			.section
+				padding: 0 50px
+		&_title
+			margin-bottom: 20px
+			font 20px/1.6 $f_bold
+			white-space initial
+			+desktop()
+				margin-bottom: 112px
+				font-size: 36px
+		&_list
+			display: flex
+			flex-direction: column
+			align-items: stretch
+			row-gap 20px
+			+tablet()
+				flex-direction: row
+				column-gap 20px
+			+desktop()
+				column-gap 40px
+		&_item
+			padding: 20px
+			display: flex
+			flex-direction: column
+			align-items: flex-start
+			background-color: #F4F7F97D
+			+desktop()
+				w 100%
+				padding: 40px 20px 60px
+		&_icon
+			margin-bottom: 20px
+			+desktop()
+				margin-bottom: 41px
+		&_subtitle
+			margin-bottom: 20px
+			font 16px/1.5 $f_bold
+			+desktop()
+				margin-bottom: 30px
+				font-size: 28px
+		&_text
+			font 14px/1.8 $f_reg
+			+desktop()
+				font-size: 18px
+		&_link
+			display: block
+			color #7C97B6
+	&-blue
+		padding 40px 20px
+		background-color: #004986
+		display: flex
+		flex-direction: column
+		align-items: center
+		+desktop()
+			padding: 82px 0
+		&_title
+			max-width 940px
+			font 22px/1.6 $f_bold
+			color #fff
+			text-align: center
+			white-space initial
+			+desktop()
+				font-size: 36px
+	&-reviews
+		padding 50px 0
+		+desktop()
+			padding 100px 0 70px
+		.section
+			+tablet-large()
+				display: flex
+				align-items: center
+				column-gap 40px
+			+desktop()
+				column-gap 80px
+		&_left
+			margin-bottom: 30px
+			display: flex
+			flex-direction: column
+			row-gap 20px
+			+tablet-large()
+				margin-bottom: 0
+			+desktop()
+				row-gap 29px
+		&_title
+			font 20px/1.6 $f_bold
+			+desktop()
+				font-size: 36px
+		&_text
+			font 14px/1.5 $f_reg
+			+desktop()
+				font-size: 20px
+		&_list,&_col
+			display: flex
+			flex-direction: column
+			row-gap 20px
+		&_list
+			+tablet()
+				flex-direction: row
+				align-items: center
+				column-gap 20px
+		&_item
+			padding: 20px
+			display: flex
+			align-items: flex-start
+			column-gap 10px
+			border-radius 8px
+			box-shadow 0 0 20px 0 rgba(0,0,0,.1)
+			&.gray
+				color #fff
+				background-color: #35465B
+			&.yellow
+				background-color: #FFDA54
+			+tablet()
+				padding: 40px 30px 70px 20px
+			+tablet-large()
+				w 300px
+			+desktop()
+				w 357px
+			p
+				font 14px/1.5 $f_reg
+				+desktop()
+					font-size: 17px
+			svg
+				wh 40px,35px
+				flex-shrink 0

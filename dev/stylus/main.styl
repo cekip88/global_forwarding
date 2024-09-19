@@ -12,7 +12,8 @@ svg
 	display: none!important
 a
 	color RGB($dark_gray)
-
+button,a,input
+	cursor pointer
 .body
 	color RGB($dark_gray)
 	font 16px $f_reg
@@ -120,18 +121,22 @@ input::-webkit-inner-spin-button
 		border-radius 4px
 		background-color RGB($white)
 		border 1px solid #e6edf0
-		transform translateX(-50%)
+		transform translateX(-100%)
 		font-size 14px
 		line-height 1.2
 		opacity 0
 		visibility hidden
 		position absolute
-		top 100%
-		left 50%
 		z-index 100
-		&.to_top
-			top initial
-			bottom 100%
+		top 0
+		left 0
+		+tablet()
+			top 100%
+			left 50%
+			transform translateX(-50%)
+			&.to_top
+				top initial
+				bottom 100%
 .select
 	position relative
 	&.active

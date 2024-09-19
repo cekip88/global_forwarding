@@ -11,134 +11,45 @@ header.head
 			.head-col.head-hidden
 				nav.head-nav
 					.head-nav_item
+						a(href="/why").head-nav_btn Why We
+					.head-nav_item
 						button(data-click="front:showHeadSubmenu").head-nav_btn
 							span Services
 							svg
 								use(xlink:href="#arrow_bottom")
-						ul.head-nav-list
-							li.head-nav-list_item
-								a(href="#").head-nav-list_btn
-									span Shipping Services
-								button(data-click="front:showHeadSubmenu").head-nav-list_btn
-									span Shipping Services
-									svg
-										use(xlink:href="#arrow_bottom")
-								ul.head-nav-sublist
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Less than Truckload
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Truckload
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Parcel
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Intermodal Transportation
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Expedited Freight
-							li.head-nav-list_item
-								a(href="#").head-nav-list_btn
-									span Custom Solutions
-								button(data-click="front:showHeadSubmenu").head-nav-list_btn
-									span Custom Solutions
-									svg
-										use(xlink:href="#arrow_bottom")
-								ul.head-nav-sublist
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Request a Proposal (RFP)
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Case Studies
-							li.head-nav-list_item
-								button(data-click="front:showHeadSubmenu").head-nav-list_btn
-									span Technology
-									svg
-										use(xlink:href="#arrow_bottom")
-								ul.head-nav-sublist
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Enterprise Transportation Management System (eTMS)
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Custom Integrations for Small Business Developers
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn E-commerce Shipping Solutions
-					.head-nav_item
-						button(data-click="front:showHeadSubmenu").head-nav_btn
-							span Learn
-							svg
-								use(xlink:href="#arrow_bottom")
-						ul.head-nav-list
-							li.head-nav-list_item
-								a(href="#").head-nav-list_btn
-									span How to ship
-								button(data-click="front:showHeadSubmenu").head-nav-list_btn
-									span How to ship
-									svg
-										use(xlink:href="#arrow_bottom")
-								ul.head-nav-sublist
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Bill of Lading
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Calculate Class
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Calculate Rates
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Glossary
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Standard Pallet Sizes
-							li.head-nav-list_item
-								button(data-click="front:showHeadSubmenu").head-nav-list_btn
-									span Shipping Modes
-									svg
-										use(xlink:href="#arrow_bottom")
-								ul.head-nav-sublist
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn LTL Freight Shipping
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Parcel Shipping
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Truckload
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Partial Truckload
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Flatbed Shipping
-							li.head-nav-list_item
-								a(href="#").head-nav-list_btn
-									span Resource Center
-								button(data-click="front:showHeadSubmenu").head-nav-list_btn
-									span Resource Center
-									svg
-										use(xlink:href="#arrow_bottom")
-								ul.head-nav-sublist
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Blog
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn Videos
-									li.head-nav-sublist_item
-										a(href="#").head-nav-sublist_btn White Papers
-					.head-nav_item
-						a(href="#").head-nav_btn Rewards
-				form.head-nav-form#head-search-form
-					.head-nav-form_left
-						input(type="text" placeholder="Search Global Forwarding").head-nav-form_inpt
-						button.head-nav-form_btn
-							svg
-								use(xlink:href="#head_search")
-					button(type="button" data-click="front:closeHeadForm").head-nav-form_close
-				form.head-track-form#head-track-form
-					.head-track-form_left
-						input(type="text" placeholder="Enter Tracking# or BOL#").head-track-form_inpt
-						button.head-track-form_btn
-							svg
-								use(xlink:href="#head_search")
-					button(type="button" data-click="front:closeHeadForm").head-track-form_close
+						.head-nav-list
+							ul.head-nav-sublist
+								li.head-nav-sublist_item
+									a(href="/freight").head-nav-sublist_btn Less than Truckload
+								li.head-nav-sublist_item
+									a(href="/truckload").head-nav-sublist_btn Truckload
+								li.head-nav-sublist_item
+									a(href="/parcel").head-nav-sublist_btn Parcel
+				//form.head-nav-form#head-search-form
+				//	.head-nav-form_left
+				//		input(type="text" placeholder="Search Global Forwarding").head-nav-form_inpt
+				//		button.head-nav-form_btn
+				//			svg
+				//				use(xlink:href="#head_search")
+				//	button(type="button" data-click="front:closeHeadForm").head-nav-form_close
+				//form.head-track-form#head-track-form
+				//	.head-track-form_left
+				//		input(type="text" placeholder="Enter Tracking# or BOL#").head-track-form_inpt
+				//		button.head-track-form_btn
+				//			svg
+				//				use(xlink:href="#head_search")
+				//	button(type="button" data-click="front:closeHeadForm").head-track-form_close
 			.head-col.head_btns
 				button.btn
 					span Get Quotes
-				button(data-click="front:showHeadForm" data-target="#head-track-form").head-btn.head-btn_track
-					svg
-						use(xlink:href="#head_location")
-					span Track
-				button(data-click="front:showHeadForm" data-target="#head-search-form").head-btn.head-btn_search
-					svg
-						use(xlink:href="#head_search")
-					span Search
+				//button(data-click="front:showHeadForm" data-target="#head-track-form").head-btn.head-btn_track
+				//	svg
+				//		use(xlink:href="#head_location")
+				//	span Track
+				//button(data-click="front:showHeadForm" data-target="#head-search-form").head-btn.head-btn_search
+				//	svg
+				//		use(xlink:href="#head_search")
+				//	span Search
 				button.head-btn.head-btn_signin
 					svg
 						use(xlink:href="#head_user")

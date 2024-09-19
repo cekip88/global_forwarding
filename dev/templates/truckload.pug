@@ -1,0 +1,993 @@
+include  template/vars
+include ../../../../core/mixins/mixins
+include data/data
+doctype html
+html(lang='en')
+	-
+		page_title = "Truckload";
+	include template/style
+body.body
+	.set
+		include template/header
+		main.main
+			section.fr
+				.fr-top
+					a(href="8772870804").fr-top_link Call us today: 877-287-0804
+				.fr-middle
+					.section_large
+						h1.fr-middle_title TL
+						p.fr-middle_text
+							| Streamline your LTL freight shipping process with FreightCenter, and experience
+							| significant cost savings of up to 95%. Take advantage of our complimentary LTL
+							| freight quote service today. LTL shipping is an ideal solution for transporting
+							| partial truckloads and other goods that do not require full trailer capacity.
+				.fr-bottom
+					.section_large
+						.fr-bottom-label
+							img(src="img/easy_tracking.png")
+							span Easy Tracking
+						.fr-bottom-label
+							img(src="img/secure_payments.png")
+							span Secure Payments
+						.fr-bottom-label
+							img(src="img/shipping_rewards.png")
+							span Shipping Rewards
+				.breadcrumbs
+					.section_large
+						a(href="/").breadcrumbs_link
+							svg
+								use(xlink:href="#home")
+						span /
+						a(href="/services").breadcrumbs_link Services
+						span /
+						span.breadcrumbs_text LT
+				.calc
+					.calc-form
+						h3.calc-form_title Freight rate calculator
+						.calc-form-block
+							span.calc-form-block_text Shipping option
+							.calc-form-block_row
+								.calc-form_label
+									label.radio
+										input(
+											type="radio"
+											name="option"
+											value="LTL"
+											data-change="front:changeTrackOption"
+										).radio_input
+										span.radio_icon
+										span.radio_text LTL (Less-Than-Truckload)
+									.tip
+										.tip_icon
+											svg
+												use(xlink:href="#question")
+										.tip_text
+											| LTL shipping is used for small freight or when the items don't
+											| require the use of an entire trailer. Your freight is combined
+											| with other shipments to fill an entire trailer. It is ideal for
+											| shipments under 15,000 pounds.
+								.calc-form_label
+									label.radio
+										input(
+											type="radio"
+											name="option"
+											value="FT"
+											data-change="front:changeTrackOption"
+											checked
+										).radio_input
+										span.radio_icon
+										span.radio_text Full Truckload
+									.tip
+										.tip_icon
+											svg
+												use(xlink:href="#question")
+										.tip_text
+											| Full truckload is used when shippers have enough items to fill
+											| an entire truck or they want their shipment in a trailer all by
+											| itself.
+						form.calc-form_item#ltl
+							.calc-form-block
+								span.calc-form-block_text Pickup and delivery locations
+								.calc-form-block_row
+									label.calc-form-inpt
+										span.calc-form-inpt_label Pickup city/ZIP
+										input(
+											type='text'
+											name='pickup_zip'
+											placeholder='_________'
+											data-input="front:findByZip"
+											required
+										).calc-form-inpt_input
+										span.form_error.hidden Please select the Zip code
+									label.calc-form-inpt
+										span.calc-form-inpt_label Destination city/ZIP
+										input(
+											type='text'
+											name='destination_zip'
+											placeholder='_________'
+											data-input="front:findByZip"
+											required
+										).calc-form-inpt_input
+							.calc-form-block
+								span.calc-form-block_text Shipment information
+								.calc-form-block_row
+									.calc-form-block_parts
+										label.calc-form-inpt
+											span.calc-form-inpt_label Length
+											input(
+												type='number'
+												name='length'
+												value='48'
+												placeholder='1000'
+												min='1'
+												data-input="front:checkCalcForm"
+												required
+											).calc-form-inpt_input
+										label.calc-form-inpt
+											span.calc-form-inpt_label Width
+											input(
+												type='number'
+												name='width'
+												value='40'
+												placeholder='1000'
+												min='1'
+												data-input="front:checkCalcForm"
+												required
+											).calc-form-inpt_input
+										label.calc-form-inpt
+											span.calc-form-inpt_label Height
+											input(
+												type='number'
+												name='height'
+												value='48'
+												placeholder='1000'
+												min='1'
+												data-input="front:checkCalcForm"
+												required
+											).calc-form-inpt_input
+										.select.calc-form_select
+											button(type="button" data-click="front:selectOpen").select_head
+												span in
+												svg
+													use(xlink:href="#select_arrow")
+											input(type="text" name="size_type" value='in').select_input
+											.select_body
+												button(type="button" data-click="front:selectChoose").select_option.active in
+												button(type="button" data-click="front:selectChoose").select_option feet
+									.calc-form-block_parts
+										label.calc-form-inpt
+											span.calc-form-inpt_label Weight
+											input(
+												type='number'
+												name='weight'
+												placeholder='1000'
+												min='1'
+												data-input="front:checkCalcForm"
+												required
+											).calc-form-inpt_input
+										.select.calc-form_select
+											button(type="button" data-click="front:selectOpen").select_head
+												span lbs
+												svg
+													use(xlink:href="#select_arrow")
+											input(type="text" name="weight_type" value='lbs').select_input
+											.select_body
+												button(type="button" data-click="front:selectChoose").select_option.active lbs
+												button(type="button" data-click="front:selectChoose").select_option kg
+							.tip.calc-form_submit
+								button.btn(disabled)
+									span View my rates
+								.tip_text.to_top
+									p Oops! We still need this information:
+									ul.calc_validates_list
+										li.pickup_zip Pickup ZIP/Postal code
+										li.destination_zip Destination ZIP/Postal code
+										li.length.hidden Length
+										li.width.hidden Width
+										li.height.hidden Height
+										li.weight Weight
+						form.calc-form_item.active#ft
+							.calc-form-block
+								span.calc-form-block_text Pickup and delivery locations
+								.calc-form-block_row
+									label.calc-form-inpt
+										span.calc-form-inpt_label Pickup city/ZIP
+										input(
+											type='text'
+											name='pickup_zip'
+											placeholder='_________'
+											data-input="front:findByZip"
+											required
+										).calc-form-inpt_input
+										span.form_error.hidden Please select the Zip code
+									label.calc-form-inpt
+										span.calc-form-inpt_label Destination city/ZIP
+										input(
+											type='text'
+											name='destination_zip'
+											placeholder='_________'
+											data-input="front:findByZip"
+											required
+										).calc-form-inpt_input
+							.calc-form-block
+								span.calc-form-block_text Shipment information
+								.calc-form-block_row
+									.calc-form-block_parts
+										label.calc-form-inpt
+											span.calc-form-inpt_label Weight
+											input(
+												type='number'
+												name='weight'
+												placeholder='1000'
+												min='1'
+												data-input="front:checkCalcForm"
+												required
+											).calc-form-inpt_input
+										.select.calc-form_select
+											button(type="button" data-click="front:selectOpen").select_head
+												span lbs
+												svg
+													use(xlink:href="#select_arrow")
+											input(type="text" name="weight_type" value='lbs').select_input
+											.select_body
+												button(type="button" data-click="front:selectChoose").select_option.active lbs
+												button(type="button" data-click="front:selectChoose").select_option kg
+									label.calc-form-inpt.w-full
+										span.calc-form-inpt_label Choose Equipment
+										.select.calc-form_select
+											button(type="button" data-click="front:selectOpen").select_head
+												span Drayage
+												svg
+													use(xlink:href="#select_arrow")
+											input(type="text" name="weight_type" value='Drayage').select_input
+											.select_body
+												button(type="button" data-click="front:selectChoose").select_option.active Drayage
+												button(type="button" data-click="front:selectChoose").select_option Flatbed
+												button(type="button" data-click="front:selectChoose").select_option Intermodal
+												button(type="button" data-click="front:selectChoose").select_option Lowboy
+												button(type="button" data-click="front:selectChoose").select_option Ocean
+												button(type="button" data-click="front:selectChoose").select_option Power-only
+												button(type="button" data-click="front:selectChoose").select_option Reefer
+												button(type="button" data-click="front:selectChoose").select_option Van
+												button(type="button" data-click="front:selectChoose").select_option Other
+												button(type="button" data-click="front:selectChoose").select_option I don't know
+							.calc-form-block
+								.calc-form-inpt.w-full
+									span.calc-form-inpt_label What are you shipping?
+									textarea(maxlength='70' name="calc_info" data-input="front:checkCalcForm" required).calc-form-inpt_textarea
+									span.form_under limit of 70 characters
+							.tip.calc-form_submit
+								button.btn(disabled)
+									span View my rates
+								.tip_text.to_top
+									p Oops! We still need this information:
+									ul.calc_validates_list
+										li.pickup_zip Pickup ZIP/Postal code
+										li.destination_zip Destination ZIP/Postal code
+										li.weight Weight
+										li.calc_info What are you shipping
+					.calc-bottom
+						h5.calc-bottom_title Want To Learn More About Truckload Shipping?
+						a(href='#').shipping_link
+							span 5 Tricks To Get The Best Shipping Rates
+							svg
+								use(xlink:href="#shipping_arrow")
+						a(href='#').shipping_link
+							span Freight Insurance
+							svg
+								use(xlink:href="#shipping_arrow")
+				.fr-desc
+					.section_large
+						h3.fr-desc_title Truckload
+						p.fr-desc_text
+							| #[strong Getting the best Truckload Services] is just a few steps away.
+							| Fill in a few short details about your shipment and receive instant
+							| Truckload rates from leading truckload freight shipping companies in one
+							| easy place. Trust the experts at FreightCenter to give you the best prices
+							| and options for your shipping needs.
+					.section_large
+						ul.fr-desc_list
+							li
+								svg
+									use(xlink:href='#list_disc')
+								span Truckload freight shipping from 100+ carriers
+							li
+								svg
+									use(xlink:href='#list_disc')
+								span Instant LTL rates anytime
+							li
+								svg
+									use(xlink:href='#list_disc')
+								span LTL solutions to anywhere in the U.S. & Canada
+							li
+								svg
+									use(xlink:href='#list_disc')
+								span Unbeatable discounts on your less-than-load, truckload, rail, air, and more
+							li
+								svg
+									use(xlink:href='#list_disc')
+								span Automated LTL tracking, paperwork & invoices
+							li
+								svg
+									use(xlink:href='#list_disc')
+								span Manage all freight quotes & shipments in one place
+							li
+								svg
+									use(xlink:href='#list_disc')
+								span 24+ years of transportation experience working for you!
+			//section.trust-pilot
+			//	.section_large
+			//		h3.trust-pilot_title
+			//			img(src="img/trust-pilot.svg")
+			//		h5.trust-pilot_subtitle What our customers are saying
+			//		p.trust-pilot_text
+			//			| We provide competitive freight shipping prices and an all-inclusive, easy-to-use shipping experience for our customers.
+			//			| Exceeding our customers’ expectations results in thousands of satisfied customer reviews and repeat business. We
+			//			| believe in the power of our customer relationships. Check out FreightCenter reviews from real customers, and learn what
+			//			| they have to say about their freight shipping experience!
+			//		.trust-pilot_list
+			//			.trust-pilot_item.trust-pilot-score
+			//				h6.trust-pilot-score_title Average
+			//				.trust-pilot-score-mark.mark-35
+			//					.trust-pilot-score-mark_item.mark
+			//						svg
+			//							use(xlink:href="#star")
+			//					.trust-pilot-score-mark_item.mark
+			//						svg
+			//							use(xlink:href="#star")
+			//					.trust-pilot-score-mark_item.mark
+			//						svg
+			//							use(xlink:href="#star")
+			//					.trust-pilot-score-mark_item.mark
+			//						svg
+			//							use(xlink:href="#star")
+			//					.trust-pilot-score-mark_item.mark
+			//						svg
+			//							use(xlink:href="#star")
+			//				.trust-pilot-score_text
+			//					| Based on&nbsp;
+			//					a(href="#") 1,474 reviews
+			//				img(src="img/trust-pilot.svg")
+			//			.trust-pilot_item.reviews-slider_cont
+			//				.reviews-slider
+			//					button.reviews-slider_button(disabled)
+			//						svg
+			//							use(xlink:href='#reviews_left')
+			//					.reviews-slider-inner
+			//						.reviews-slider-inner_row
+			//							-for (let i = 0; i < 15; i++)
+			//								.reviews-slide
+			//									.reviews-slide-mark.mark-50
+			//										.reviews-slide-mark_item.mark
+			//											svg
+			//												use(xlink:href="#star")
+			//										.reviews-slide-mark_item.mark
+			//											svg
+			//												use(xlink:href="#star")
+			//										.reviews-slide-mark_item.mark
+			//											svg
+			//												use(xlink:href="#star")
+			//										.reviews-slide-mark_item.mark
+			//											svg
+			//												use(xlink:href="#star")
+			//										.reviews-slide-mark_item.mark
+			//											svg
+			//												use(xlink:href="#star")
+			//									h5.reviews-slide_title Sergio Arenas was the gentleman who
+			//									p.reviews-slide_text
+			//										| Sergio Arenas was the gentleman who
+			//										| helped me. He was extremely helpful
+			//									.reviews-slide_signature
+			//										| #[strong WHAValued Customer], 2 days ago
+			//						.trust_signature Showing our 5 star reviews
+			//					button.reviews-slider_button
+			//						svg
+			//							use(xlink:href='#reviews_right')
+			section.shipping-rates.tl
+				h3.shipping-rates_title Let’s Get Started! Compare shipping rates in an instant!
+				button.btn Get a Freight Quote
+			section.tl-rates
+				.section_large
+					.tl-rates_photo
+						img(src="img/TL-rates.jpg")
+					.tl-rates_info
+						h3.tl-rates_title Why Choose FreightCenter For Truckload Services (FTL)?
+						p.tl-rates_text
+							| Choosing an exemplary freight service is crucial when shipping large quantities of goods.
+							| FreightCenter is a leading provider of truckload services (FTL) and stands out for many
+							| reasons. One of the key benefits of using FreightCenter is its extensive network of
+							| carriers. This network ensures that your shipment can be matched with the best possible
+							| carrier, offering competitive rates and reliable service. By leveraging this vast network,
+							| FreightCenter can provide more options and flexibility for your shipping needs.
+						p.tl-rates_text
+							| Another reason to choose FreightCenter for truckload services is their exceptional
+							| customer support. Shipping can be complicated, but FreightCenter’s team of experts is
+							| always available to help. They offer personalized assistance to ensure your shipments are
+							| handled efficiently, and any issues are promptly addressed. This dedication to customer
+							| service ensures that your shipping experience is as smooth and stress-free as possible.
+						p.tl-rates_text
+							| FreightCenter also uses advanced technology to enhance its truckload services. Their
+							| online platform lets you easily compare rates, book shipments, and track your freight in
+							| real time. This technology not only simplifies the shipping process but also provides
+							| transparency, allowing you to stay informed about the status of your shipments. The ease
+							| of use and access to information make managing your logistics more straightforward and
+							| efficient.
+						p.tl-rates_text
+							| FreightCenter is committed to providing cost-effective solutions. They understand that
+							| shipping costs can be significant for businesses, so they work hard to negotiate the best
+							| rates with carriers. This commitment to affordability does not come at the expense of
+							| quality; you can expect reliable service at competitive prices. Choosing FreightCenter for
+							| your truckload services means you get the best value for your money, ensuring your
+							| goods are delivered safely and on time without breaking the bank.
+						button.btn Get Your Truckload Quote
+			section.info
+				.section_large
+					.info_row
+						.info_col
+							strong TL Global Forwarding
+							span by the numbers
+						.info_col
+							strong 25
+							span Years In Business
+						.info_col
+							strong 1.5m+
+							span Years In Business
+						.info_col
+							strong 93%+
+							span On-Time Performance
+						.info_col
+							strong 99.1%
+							span Damage Free LTL
+			section.comparison
+				.section_large
+					.comparison_block
+						h3.comparison_subtitle What is Considered Truckload Freight?
+						p.comparison_text
+							| Truckload freight, or FTL freight, is a mode of transportation that involves
+							| using a truck to transport a substantial amount of goods from one location to
+							| another. In truckload shipping, the&nbsp;
+							a.comparison_link entire truck
+							| &nbsp;is dedicated to carrying a single shipment, typically belonging to a single
+							| customer or consignor.
+						p.comparison_text
+							| Truckload freight is utilized when the size or weight of the shipment exceeds
+							| the capacity or requirements of other transportation modes, such as LTL carriers
+							| or parcel carriers. It is often more cost-effective for large or bulk shipments,
+							| as the cost is typically based on the distance traveled and the space occupied
+							| by the cargo within the truck.
+						p.comparison_text
+							| This mode of transportation offers several advantages. It provides faster transit
+							| times than LTL shipping since the truck travels directly from the origin to the
+							| destination without multiple stops. Additionally, truckload freight offers greater
+							| flexibility in pickup and delivery times, as the truck can be scheduled according
+							| to the customer’s specific requirements.
+						p.comparison_text
+							| Truckload freight is suitable for various goods, including raw materials,
+							| finished products, and industrial equipment. It can be used for domestic and
+							| international shipping, offering businesses and individuals a reliable and
+							| efficient option for transporting large goods.
+					.comparison_block
+						h3.comparison_title Truckload Transportation Service
+						p.comparison_text
+							| Truckload freight shipping involves the transportation of a single freight shipment
+							| from one location to another using one truck. This freight service is often the
+							| most cost-effective since only one shipment is moved at a time, unlike multiple
+							| loads on different trucks. It also allows for faster transit times, as fewer stops
+							| are required, and a single route can be planned.
+						p.comparison_text
+							| One of the most significant differences between LTL and FTL shipments is dependable
+							| pickup and delivery times. Full truckload services offer strict pickup and delivery
+							| dates for freight shipments, ensuring your load makes it from its pickup point to
+							| its final destination on time. Additionally, FTL freight shipping offers more
+							| safety and security than other freight options, as each piece of cargo gets its
+							| dedicated truck.
+						p.comparison_text
+							| The reliability and security offered by TL freight make it an ideal choice for
+							| companies shipping large volumes of goods during springtime. This helps to reduce
+							| the risk of damage or theft, which can occur when multiple shipments are loaded
+							| onto one truck. Furthermore, truckload freight makes it easier for companies to
+							| track their shipments while in transit, providing visibility into the location
+							| of their goods throughout the journey.
+						p.comparison_text
+							| For instance, manufacturers may transport parts or raw materials long distances
+							| to meet production deadlines or restock their inventory after a lull caused by
+							| winter weather conditions. Similarly, retailers may require additional supplies
+							| for peak shopping seasons such as Easter or Mother’s Day, necessitating quick
+							| delivery times and careful handling of fragile merchandise.
+						p.comparison_text
+							| For all these reasons, freight shipping remains an essential part of logistics
+							| operations throughout the United States during springtime. It provides customers
+							| with cost-efficient transportation solutions and ensures goods arrive safely at
+							| their scheduled destination. Companies seeking dependable freight solutions this
+							| season should consider partnering with FreightCenter when shipping FTL.
+					.comparison_block
+						h3.comparison_subtitle Types of Truckload Services Offered
+						ul.fr-desc_list
+							li
+								svg
+									use(xlink:href="#list_disc")
+								span Double-Drop Deck (Lowboy)
+							li
+								svg
+									use(xlink:href="#list_disc")
+								span Double-Drop Deck with Detachable Deck (Lowboy, RGN)
+							li
+								svg
+									use(xlink:href="#list_disc")
+								span Flatbed Trailers
+							li
+								svg
+									use(xlink:href="#list_disc")
+								span Stretch Flatbed Trailers
+							li
+								svg
+									use(xlink:href="#list_disc")
+								span Step Deck Trailers
+							li
+								svg
+									use(xlink:href="#list_disc")
+								span Dry Van Trailers
+							li
+								svg
+									use(xlink:href="#list_disc")
+								span Refrigerated Trailers
+							li
+								svg
+									use(xlink:href="#list_disc")
+								span Conestoga Trailers
+					.comparison_block
+						h3.comparison_title
+							| Full Truckload vs. Less Than Truckload Shipping: A Comparative Analysis
+						p.comparison_text
+							| Freight transportation plays a vital role in today’s globalized economy,
+							| ensuring the efficient movement of goods from manufacturers to consumers.
+							| Two commonly used methods for shipping goods are FTL and LTL shipping.
+							| FTL and LTL have distinct advantages and disadvantages, and understanding
+							| their differences is crucial for businesses to make informed decisions about
+							| their shipping needs. Let’s compare FTL and LTL shipping, highlighting their
+							| key features, benefits, and considerations.
+					.comparison_block
+						h3.comparison_subtitle Definition and Scope:
+						p.comparison_text
+							strong FTL:
+							| &nbsp;Full Truckload shipping refers to transporting goods that occupy an entire
+							| trailer. It typically involves larger shipments or items that require
+							| dedicated space.
+						p.comparison_text
+							strong LTL:
+							| &nbsp;Less Than Truckload shipping involves shipments that do not require a full
+							| trailer. Multiple shipments from different shippers are consolidated into a
+							| single truck, sharing space and costs.
+						h3.comparison_subtitle Cost Considerations:
+						.comparison_inner
+							p.comparison_text
+								strong.red FTL:
+								| &nbsp;FTL shipments are typically priced based on the space the goods occupy.
+								| While FTL may be more expensive for smaller loads, it offers cost advantages
+								| for more extensive and bulkier shipments due to economies of scale.
+							p.comparison_text
+								strong.green LTL:
+								| &nbsp;LTL shipments are priced based on weight, dimensions, and distance
+								| traveled. LTL shipping can be cost-effective for smaller loads, as the
+								| cost is shared among multiple shippers.
+						h3.comparison_subtitle Transit Time and Speed:
+						.comparison_inner
+							p.comparison_text
+								strong.green FTL:
+								| &nbsp;With FTL shipping, there is usually a direct route from the pickup location
+								| to the destination, resulting in shorter transit times and faster delivery.
+							p.comparison_text
+								strong.red LTL:
+								| &nbsp;LTL: LTL shipments involve multiple stops for pickups and drop-offs,
+								| which can increase transit times. However, advancements in LTL logistics have
+								| improved speed and efficiency in recent years.
+						h3.comparison_subtitle Flexibility and Capacity:
+						.comparison_inner
+							p.comparison_text
+								strong.green FTL:
+								| &nbsp;FTL shipping offers greater flexibility in scheduling and
+								| pickup/delivery times. It is ideal for businesses with time-sensitive or
+								| high-volume shipments that require dedicated space and immediate delivery.
+							p.comparison_text
+								strong.red LTL:
+								| &nbsp;LTL shipping provides flexibility for businesses with smaller shipments,
+								| allowing them to share truck space with other shippers. However, it may have
+								| limitations in terms of specific delivery schedules.
+						h3.comparison_subtitle Risk of Damage and Loss:
+						.comparison_inner
+							p.comparison_text
+								strong.green FTL:
+								| &nbsp;FTL shipping minimizes the risk of damage or loss as the goods
+								| are not handled or transferred during transit. The shipment remains secure
+								| and intact throughout the journey.
+							p.comparison_text
+								strong.red LTL:
+								| &nbsp;LTL shipments are more susceptible to handling and transfers during
+								| consolidation and deconsolidation processes, which may increase the risk of
+								| damage or loss.
+						h3.comparison_subtitle Documentation and Tracking:
+						.comparison_inner
+							p.comparison_text
+								strong.green FTL:
+								| &nbsp;FTL shipping involves more detailed documentation and tracking processes
+								| since the truckload belongs to a single shipper. The shipper has greater
+								| control and visibility over their shipment.
+							p.comparison_text
+								strong.red LTL:
+								| &nbsp;LTL shipments require more complex documentation and tracking, as
+								| multiple shippers are involved. However, modern technology has improved LTL
+								| tracking capabilities, providing increased visibility.
+						p.comparison_text
+							| In summary, the choice between FTL and LTL shipping depends on various factors,
+							| including shipment size, volume, urgency, budget, and specific requirements.
+							| FTL shipping offers advantages such as faster transit times, dedicated space,
+							| and reduced risk of damage, making it suitable for large shipments or
+							| time-sensitive deliveries. On the other hand, LTL shipping provides cost savings
+							| for smaller loads, flexibility in sharing truck space, and advancements in speed
+							| and efficiency. Businesses should carefully evaluate their shipping needs and
+							| consider these factors to determine the most appropriate method for their
+							| requirements.
+					.comparison_block.comparison_gallery
+						h3.comparison_subtitle Choosing The Right Type Of Truckload Equipment
+						p.comparison_text
+							| Truckload freight commodities are large shipments of goods that fill an entire
+							| trailer. A truckload shipment can refer to a full trailer of any size, ranging
+							| from a standard dry van to a refrigerated truck or flatbed with specialized
+							| materials. The size and type of the freight determine how much the trailer
+							| can carry, but typically loads range between 10,000-30,000 lbs.
+						p.comparison_text
+							| Unlike LTL shipping, where multiple small shipments share space on one truck,
+							| truckload shipments are exclusive to the customer who ordered them. Before
+							| shipping your commodities, it is essential to consider what form of truckload
+							| service you need and what trailer type is best for your freight shipment. At
+							| FreightCenter, we can help determine what trailer type best fits your
+							| shipment’s needs.
+						p.comparison_text
+							| Determining whether your shipment needs a semi-trailer, drop deck, or flatbed
+							| will also help determine the best way to package your shipment. Here are a
+							| few types of truckload services that FreightCenter carriers regularly offer:
+					.comparison_block
+						h3.comparison_title Types of Truckload Services Offered
+						p.comparison_text
+							| FreightCenter offers a variety of truckload services to meet different shipping
+							| needs. These services include full truckload (FTL), less-than-truckload (LTL),
+							| refrigerated, flatbed, and expedited shipping. Each type of service is designed
+							| to handle specific shipments, ensuring that goods are transported safely and
+							| efficiently.
+						p.comparison_text
+							| Full truckload (FTL) service is ideal for large shipments that fill an entire
+							| truck. This type of service is perfect for businesses that need to ship large
+							| quantities of goods at once. With FTL, the whole truck is dedicated to one
+							| shipment, reducing the risk of damage and ensuring faster delivery times.
+							| FreightCenter’s FTL services are reliable and offer competitive pricing,
+							| making them an excellent choice for oversized shipments.
+						p.comparison_text
+							| Partial Truckload (PTL) service is suitable for smaller shipments that do not
+							| require an entire truck. This service allows multiple shippers to share the
+							| same truck, making it a cost-effective option for shipping smaller goods.
+							| FreightCenter’s PTL services provide flexibility and affordability, helping
+							| businesses save money while ensuring their goods are delivered safely.
+						p.comparison_text
+							| Refrigerated truckload service is essential for shipping perishable goods
+							| that must be kept at a specific temperature. This service is commonly used
+							| for transporting food, beverages, pharmaceuticals, and other
+							| temperature-sensitive items. FreightCenter’s refrigerated truckload services
+							| ensure that these goods are kept at the right temperature throughout the
+							| journey, maintaining their quality and safety.
+						p.comparison_text
+							| Flatbed truckload service is used for transporting large, heavy, or awkwardly
+							| shaped items that cannot fit in a standard truck. This type of service is
+							| ideal for shipping construction materials, machinery, and oversized equipment.
+							| FreightCenter’s flatbed truckload services provide the equipment and expertise
+							| to handle these challenging shipments, ensuring they are transported securely
+							| and efficiently.
+						p.comparison_text
+							| Expedited shipping is a service for shipments that need to be delivered quickly.
+							| This type of service is perfect for urgent deliveries or time-sensitive goods.
+							| FreightCenter’s expedited shipping services prioritize these shipments, ensuring
+							| they reach their destination quickly. This service is crucial for businesses
+							| that must meet tight deadlines and cannot afford delays.
+						p.comparison_text
+							| FreightCenter offers various truckload services to accommodate different shipping
+							| needs. Whether you need to ship a large quantity of goods, smaller shipments,
+							| temperature-sensitive items, oversized equipment, or urgent deliveries,
+							| FreightCenter has the right solution. Their services are designed to provide
+							| flexibility, reliability, and cost-effectiveness, making them a trusted choice
+							| for businesses looking to transport their goods efficiently and safely.
+						ul.fr-desc_list
+							li
+								svg
+									use(xlink:href="#list_disc")
+								span Standard Trailer 48ft or 53ft
+							li
+								svg
+									use(xlink:href="#list_disc")
+								a.comparison_link Trade Show Shipping
+							li
+								svg
+									use(xlink:href="#list_disc")
+								a.comparison_link Oversize or Heavy Haul Shipping
+							li
+								svg
+									use(xlink:href="#list_disc")
+								a.comparison_link Refrigerated Shipping
+							li
+								svg
+									use(xlink:href="#list_disc")
+								span Rail Service
+							li
+								svg
+									use(xlink:href="#list_disc")
+								span Heavy Haul Shipping
+							li
+								svg
+									use(xlink:href="#list_disc")
+								a.comparison_link Expedited Freight Shipping
+							li
+								svg
+									use(xlink:href="#list_disc")
+								span Air-Ride Services
+							li
+								svg
+									use(xlink:href="#list_disc")
+								span Drayage Port Services
+					.comparison_block
+						h3.comparison_title Truckload Shipping Seasons: Understanding Industry Fluctuations
+						p.comparison_text
+							| The transportation and logistics industry experiences regular fluctuations
+							| throughout the year, driven by truckload shipping seasons. These seasonal
+							| variations directly impact capacity and rates, influencing the available options
+							| for shippers. By understanding these shipping seasons, businesses can optimize
+							| their supply chains and effectively plan for increased demand and tighter
+							| capacity periods.
+						h3.comparison_subtitle Slow Season – January to March:
+						p.comparison_text
+							| Following the holiday rush, the transportation and logistics industry enters a
+							| slower shipping season from January to March. While shipping volumes decreased
+							| during this period, it is important to note that the sector remains active.
+							| Essential items such as medication, food, face masks, and hand sanitizers are
+							| in high demand. Additionally, the transportation of COVID-19 vaccines requires
+							| refrigerated trucks for nationwide distribution. Moreover, consumers often
+							| return items they receive over the holidays, resulting in shipping them back
+							| to the original seller. During this slower season, truckload rates favor
+							| shippers due to lower shipping volumes. Carriers are more willing to take
+							| on work, making rates more favorable for shippers. By March, shipping volumes
+							| begin to increase as spring and summer approach.
+						h3.comparison_subtitle Increased Volume Season – April to July:
+						p.comparison_text
+							| The arrival of spring increases shipping volumes, making it easier for drivers
+							| to find work compared to the slower months. This period marks a truckload shipping
+							| season where carrier availability decreases, leading to tighter rates. The
+							| produce harvest season also contributes to the rise in shipment volumes,
+							| particularly for truckload shippers transporting food products or produce. For
+							| instance, produce shipments often require temperature-controlled equipment to
+							| minimize spoilage or damage, especially during the hot summer.
+						h3.comparison_subtitle Peak Shipping Season – August to October:
+						p.comparison_text
+							| From August to October, the industry experiences the peak shipping season,
+							| which coincides with the continued produce season. Retailers and e-commerce stores
+							| witness a surge in product shipments due to increased online consumer purchases.
+							|This heightened demand for shipping results in further tightening of capacity,
+							| necessitating more trucks than usual to meet the needs of shippers.
+						h3.comparison_subtitle Holiday Shipping Season – November and December:
+						p.comparison_text
+							| November and December represent the busiest months for the transportation and
+							| logistics industry. Consumers take advantage of major sales events such as Black
+							| Friday, Cyber Monday, and Small Business Saturday in November, with some retailers
+							| extending Black Friday sales throughout the month. Consumers make last-
+							| minute purchases in December before shipping gifts to friends and family. Retailers
+							| ship more significant quantities of goods during this period, further increasing
+							| shipping volumes. However, as mid-December approaches and most consumers finish
+							| holiday shopping, the industry slows down again.
+						p.comparison_text
+							| Knowing the shipping seasons is crucial for businesses aiming to optimize their
+							| shipping strategies. By understanding the fluctuations in demand and capacity,
+							| companies can effectively plan for each season and ensure a smooth and efficient
+							| transportation process.
+			section.tl-rates
+				.section_large
+					.tl-rates_photo.tl-rates_photo_full
+						img(src="img/TL-rates-2.jpg")
+					.tl-rates_info
+						h3.tl-rates_title What Is Truckload Freight?
+						p.tl-rates_text
+							| Truckload freight, or full truckload (FTL) shipping, refers to transporting goods
+							| that fill an entire truck. This type of freight service is used when a shipment
+							| is large enough to occupy the full capacity of a truck, typically ranging from
+							| 10,000 to 45,000 pounds. Companies often choose truckload freight for shipping
+							| large quantities of goods to ensure that their items are transported directly
+							| from the pickup location to the destination without additional stops or transfers.
+							| This direct route minimizes the risk of damage and ensures faster delivery times.
+						p.tl-rates_text
+							| One of the main advantages of truckload freight is efficiency. The process is
+							| streamlined since the truck is fully loaded with goods from a single shipper.
+							| There is no need to stop and load or unload other shipments along the way,
+							| which can significantly reduce transit time. This makes truckload freight an
+							| excellent option for businesses needing to market their products quickly or
+							| meet tight delivery schedules.
+						p.tl-rates_text
+							| Another benefit of truckload freight is the reduced risk of damage. Because the
+							| goods remain in the same truck throughout the journey, there is less handling
+							| involved compared to other shipping methods. Less handling means fewer
+							| opportunities for items to be damaged. This is especially important for
+							| fragile or high-value goods requiring extra transportation care. By choosing
+							| truckload freight, shippers can have greater peace of mind knowing their goods
+							| are handled minimally and carefully.
+						p.tl-rates_text
+							| Truckload freight also offers more flexibility in terms of load types and sizes.
+							| Trucks can accommodate various goods, including oversized items, machinery, and
+							| large pallets. Additionally, truckload carriers often provide specialized
+							| equipment, such as refrigerated trailers for perishable goods or flatbed trucks
+							| for oversized loads. This versatility allows shippers to transport diverse
+							| products using the most suitable truck and equipment for their specific needs.
+						p.tl-rates_text
+							| Finally, truckload freight can be cost-effective for larger shipments. While
+							| the upfront cost of booking an entire truck may be higher than other shipping
+							| methods, the efficiency and reduced risk of damage can lead to overall
+							| savings. Businesses can avoid the hidden costs of delays, damages, and
+							| additional handling fees. Furthermore, many truckload carriers offer
+							| competitive rates and discounts for regular shippers, making it a financially
+							| viable option for businesses with consistent large-scale shipping needs.
+						p.tl-rates_text
+							| In conclusion, truckload freight is an ideal solution for transporting large
+							| quantities of goods efficiently and safely. Its direct routes, reduced handling,
+							| flexibility, and potential cost savings provide significant advantages for
+							| businesses looking to move their products quickly and reliably. Understanding
+							| the specifics of truckload freight helps companies make informed decisions
+							| about their shipping strategies, ensuring they choose the best method for
+							| their logistical needs.
+						button.btn Instant Truckload Quote
+			section.comparison
+				.section_large
+					.comparison_block
+						h3.comparison_title Simplifying Freight Shipping: Comparing Truck Freight Rates
+						p.comparison_text
+							| Finding the best rates and reliable carriers is crucial for businesses and individuals
+							| in shipping. FreightCenter offers a user-friendly online platform that simplifies this
+							| process by allowing users to compare truck freight rates from various carriers. This
+							| essay will explore how FreightCenter’s platform works, empowering users to make
+							| informed decisions and secure the best prices for their shipping needs.
+						h3.comparison_subtitle Comparison Made Easy:
+						p.comparison_text
+							| FreightCenter’s platform starts by collecting essential details about the shipment.
+							| Users enter information such as the goods’ origin and destination, the shipment’s
+							| size and weight, and any special requirements. This comprehensive input ensures accurate
+							| rate comparisons tailored to specific shipping needs.
+						p.comparison_text
+							| Next, the platform swiftly generates a list of available carriers and their rates. This
+							| feature enables users to evaluate multiple options side by side, considering both
+							| the cost and the quality of services provided. The ability to compare rates from
+							| different carriers at a glance empowers users to make well-informed decisions that
+							| align with their priorities.
+						h3.comparison_subtitle Streamlined Booking Process:
+						p.comparison_text
+							| Once the user has identified the carrier and rate best suits their requirements,
+							| FreightCenter’s platform streamlines the booking process. Users can conveniently
+							| secure their shipment by booking directly through the platform. By eliminating the
+							| need for time-consuming paperwork, FreightCenter simplifies the process, saving
+							| users valuable time and effort.
+						p.comparison_text
+							| Furthermore, the platform automatically generates all the necessary shipping documents,
+							| including bills of lading and customs paperwork. This automated feature
+							| reduces administrative burdens, ensuring a hassle-free experience for users. By
+							| handling the paperwork, FreightCenter enables users to focus on other essential
+							| aspects of their business or personal endeavors.
+						h3.comparison_subtitle FreightCenter Simplifies Truckload Freight Services
+						p.comparison_text
+							| FreightCenter offers a team of experienced and dedicated Truck Freight Experts who
+							| provide exceptional service and support for your shipping needs. With their
+							| extensive knowledge of the truck freight industry and understanding of shipping
+							| regulations, they assist you in selecting the right carriers and shipping options. They
+							| work closely with you to create customized shipping plans considering your budget,
+							| timeline, and goods. Regular updates, addressing concerns, and ensuring on-
+							| time and perfect shipments are part of their service. Contact FreightCenter today to
+							| experience their commitment to customer satisfaction.
+						p.comparison_text
+							| Benefits of choosing FreightCenter include access to an extensive network of carriers,
+							| guaranteeing competitive rates and reliable services. Their platform simplifies
+							| freight shipping by allowing users to compare truck freight rates from various carriers,
+							| empowering informed decisions and securing the best prices. Streamlined
+							| booking and automated document generation ensure a hassle-free experience.
+						p.comparison_text
+							| FreightCenter’s extensive carrier network provides competitive rates and reliable
+							| services. Simplify your freight shipping process by utilizing their platform and easily
+							| comparing truck freight rates.
+						p.comparison_text
+							| Regardless of the commodity being shipped, truckload freight services offer fast, secure,
+							| and cost-effective delivery solutions for large quantities or items unsuitable
+							| for LTL shipment. TL freight shipping is invaluable for meeting production deadlines
+							| and restocking inventory quickly. Truckload freight is an ideal solution for reliable
+							| freight services.
+						p.comparison_text
+							| With over 20 years of experience, FreightCenter has the expertise to ship various
+							| commodities across different locations. Their carriers are equipped to handle
+							| shipments ranging from shingles to farm equipment or used excavators, ensuring safe
+							| and timely delivery.
+						p.comparison_text
+							| FreightCenter prides itself on excellent customer service and on-time delivery.
+							| Their team listens and understands your needs, asking relevant questions to provide
+							| the best-fit options. Transportation specialists assist in navigating details to get
+							| your freight moving locally, regionally, or nationally. FreightCenter is considered the
+							| best solution for freight shipping.
+						p.comparison_text
+							| For further discussions and exploring options, contact their truckload experts today at&nbsp;
+							a(href="tel:8007167608").comparison_link 8007167608
+							| .
+					.comparison_block
+						h3.comparison_title Truckload Freight FAQs
+						p.comparison_text
+							strong Q. What is truckload freight shipping?
+						p.comparison_text.comparison_answer
+							strong A.
+							| Truckload freight shipping refers to transporting goods that fill an entire truck
+							| trailer. It is typically used when a shipper has enough cargo to occupy the whole
+							| trailer when the shipment is time-sensitive or requires special handling.
+						p.comparison_text
+							strong Q. What are the advantages of truckload shipping?
+						p.comparison_text.comparison_answer
+							strong A.
+							| Some benefits of truckload shipping include faster transit times, reduced handling
+							| and fewer risks of damage, dedicated capacity for your shipment, and more
+							| flexibility in scheduling.
+						p.comparison_text
+							strong Q. How is truckload shipping different from less-than-truckload (LTL) shipping?
+						p.comparison_text.comparison_answer
+							strong A.
+							| Truckload shipping involves using a whole truck trailer for a single shipment, while
+							| LTL shipping combines smaller shipments from other customers into a
+							| single truck. Truckload shipping is generally faster and more cost-effective for
+							| larger shipments, whereas LTL shipping suits smaller loads.
+						p.comparison_text
+							strong Q. What types of goods are typically shipped via truckload?
+						p.comparison_text.comparison_answer
+							strong A.
+							| Truckload shipping is suitable for a wide range of goods, including manufactured
+							| products, raw materials, machinery, perishable items, and other large or
+							| heavy items that require exclusive trailer use.
+						p.comparison_text
+							strong Q. How are truckload rates determined?
+						p.comparison_text.comparison_answer
+							strong A.
+							| Truckload rates depend on various factors such as the distance to be traveled,
+							| the weight and dimensions of the shipment, the type of goods being
+							| transported, fuel costs, current market conditions, and any additional services
+							| required (such as liftgate or inside delivery).
+						p.comparison_text
+							strong Q. How do I find a truckload carrier or freight broker?
+						p.comparison_text.comparison_answer
+							strong A.
+							| You can find truckload carriers or freight brokers online, contact logistics
+							| companies, or utilize freight matching platforms. These platforms connect shippers
+							| with available carriers based on their specific shipping requirements.
+						p.comparison_text
+							strong Q. What information should I provide when requesting a truckload freight quote?
+						p.comparison_text.comparison_answer
+							strong A.
+							| When getting a quote, you should provide details such as the shipment’s origin and
+							| destination, the cargo’s weight and dimensions, the desired pickup and
+							| delivery dates, any special requirements, and your contact information.
+						p.comparison_text
+							strong Q. What is the role of a freight broker in truckload shipping?
+						p.comparison_text.comparison_answer
+							strong A.
+							| Freight brokers act as intermediaries between shippers and carriers. They help
+							| shippers find reliable carriers for their truckload shipments and negotiate
+							| favorable rates and terms. Brokers also handle paperwork, track shipments, and ensure
+							| smooth communication.
+						p.comparison_text
+							strong Q. How can I track my truckload shipment?
+						p.comparison_text.comparison_answer
+							strong A.
+							| Most carriers provide tracking services that allow you to monitor the progress
+							| of your shipment. They typically provide tracking numbers or online portals
+							| where you can enter the relevant information to get real-time updates on the
+							| location and status of your shipment.
+						p.comparison_text
+							strong Q. What should I do if there is a problem with my truckload shipment?
+						p.comparison_text.comparison_answer
+							strong A.
+							| If you encounter any issues or concerns with your truckload shipment, such as
+							| delays, damages, or lost goods, you should immediately contact the carrier or
+							| freight broker you worked with. They will assist you in resolving the problem and
+							| initiating any necessary claims or investigations.
+		include template/footer

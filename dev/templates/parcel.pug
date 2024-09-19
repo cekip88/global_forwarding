@@ -1,0 +1,108 @@
+include  template/vars
+include ../../../../core/mixins/mixins
+include data/data
+doctype html
+html(lang='en')
+	-
+		page_title = "Parcel";
+	include template/style
+body.body
+	.set
+		include template/header
+		main.main
+			section.fr
+				.fr-top
+					a(href="8772870804").fr-top_link Call us today: 877-287-0804
+			section.banner
+				.section
+					.banner_inner
+						h1.banner_title
+							| Save Up to 76% off on
+							br
+							| DHL Shipping Labels
+						p.banner_text Fast, Dependable worldwide shipping.
+			section.parcel-info
+				h3.parcel-info_title
+					| Save Up to 76% off on
+					br
+					| DHL Shipping Labels
+				p.parcel-info_text
+					| Is expensive shipping cost stopping you from expanding your business
+					| overseas? ShipSaving now offers DHL Express with historically low rates.
+				button.btn Get Started Now for Free
+				.parcel-info_imgs
+					img(src='/img/head_logo.png')
+					img(src='/img/parcel-dhl-logo.png')
+			section.parcel-how
+				.section
+					h3.parcel-how_title ShipSaving + DHL® - How it works
+					ul.parcel-how_list
+						li.parcel-how_item
+							img(src="/img/parcel-how_discounted.png").parcel-how_icon
+							h5.parcel-how_subtitle Get discounted DHL® #[br] shipping rates
+							p.parcel-how_text
+								| ShipSaving offers the best DHL
+								| Express® rates - up to 76% off. 💰
+								| See how much you'll save with
+								a.parcel-how_link ShipSaving rate calculator
+						li.parcel-how_item
+							img(src="/img/parcel-how_door.png").parcel-how_icon
+							h5.parcel-how_subtitle Door-to-Door #[br] shipment delivery
+							p.parcel-how_text
+								| DHL provides expedited
+								| package delivery on the next
+								| possible business day to keep
+								| your shipments moving swiftly.
+						li.parcel-how_item
+							img(src="/img/parcel-how_missing.png").parcel-how_icon
+							h5.parcel-how_subtitle Say Bye to missing #[br] mail & lost packages
+							p.parcel-how_text
+								| No more lost packages and
+								| complaints. Get real-time
+								| notifications and proof of
+								| delivery of your shipments.
+			section.parcel-blue
+				h3.parcel-blue_title
+					| When your shipment needs to be there fast, ship with
+					| DHL for quick, reliable expedited shipments to and
+					| from more than 220 countries and territories.
+			section.parcel-reviews
+				.section
+					.parcel-reviews_left
+						h3.parcel-reviews_title You will love it as much as they do.
+						p.parcel-reviews_text
+							| Once you are spoiled by DHL
+							| Express, it’s difficult to go back and
+							| give up all the convenience.
+					.parcel-reviews_list
+						.parcel-reviews_item.gray
+							svg
+								use(xlink:href="#quotes")
+							p
+								| With DHL, I can change
+								| shipping address and delivery
+								| option at any time when my
+								| customers need, saving me
+								| lots of money!
+						.parcel-reviews_col
+							.parcel-reviews_item.yellow
+								svg
+									use(xlink:href="#quotes")
+								p
+									| I love DHL’s easy tax collection
+									| feature. It calculates taxes for
+									| me and reminds me to pay.
+									| Never had a problem with
+									| customs.
+							.parcel-reviews_item
+								svg
+									use(xlink:href="#quotes")
+								p
+									| ShipSaving’s DHL service
+									| expedited the process
+									| tremendously when we
+									| expanded to international
+									| markets. I'd love to use it
+									| because it’s so fast and
+									| reliable.
+		include template/footer
